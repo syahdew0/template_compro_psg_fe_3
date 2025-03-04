@@ -41,7 +41,7 @@
     <!-- Judul -->
     <div class="flex flex-col items-center md:items-start  justify-center md:justify-between">
       <div 
-        class="relative md:relative max-w-lg w-full md:w-1/3 md:-bottom-40 bg-[#00B1D6] text-white text-2xl md:text-3xl font-normal px-8 py-6 flex justify-between items-center mt-6 md:mt-0"
+        class="relative md:relative max-w-7xl w-full md:w-1/3 md:-bottom-40 bg-[#00B1D6] text-white text-2xl md:text-3xl font-normal px-8 py-6 flex justify-between items-center mt-6 md:mt-0"
       >
         <span>Rekomendasi Properti</span>
         <div class="flex space-x-2">
@@ -54,7 +54,7 @@
 
     <!-- Carousel -->
     <div class="relative mt-6 w-full h-full flex justify-center md:justify-end items-center">
-      <div ref="carousel" class="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide z-20 w-full md:w-2/3">
+      <div ref="carousel" class="flex gap-3 rounded-lg overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide z-20 w-full md:w-2/3">
         <div v-for="(property, index) in properties" :key="index" 
           class="flex-none border-2 w-90 bg-white shadow-lg rounded-lg overflow-hidden snap-start">
           <img :src="property.image" class="w-full h-auto object-cover" alt="Properti">
@@ -66,6 +66,7 @@
               <i class="fas fa-star"></i>
               <span class="ml-1">{{ property.rating }} ({{ property.reviews }} reviews)</span>
             </div>
+            <div class="w-full h-1 bg-gray-100 my-6"></div>
             <div class="flex justify-between items-center mt-4">
               <span class="text-[#00B1D6] text-sm font-semibold">START FROM</span>
               <span class="text-lg font-normal">{{ property.price }} /night</span>

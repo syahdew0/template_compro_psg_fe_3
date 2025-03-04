@@ -59,45 +59,49 @@
 </section>
 
 <!-- KENAPA MEMILIH KAMI --> 
-<div class="absoute w-full max-w-7xl bg-white p-1 flex items-center mt-10">
-    <!-- Fitur List -->
-    <div class="relative space-y-5 w-1/2">
-      <div 
-        v-for="feature in rentalFeatures" 
-        :key="feature.title"
-        class="flex items-center space-x-2 relative">
-        <!-- Garis konektor -->
-        <div class="absolute h-0.5 bg-[#00B1D6] right-0 top-1/2 w-40 transform translate-x-full"></div>
-        
-        <div 
-          class="px-4 py-3 rounded-lg shadow-md w-full text-gray-600 flex items-center"
-          :class="feature.isBlue ? 'bg-[#00B1D6] text-white' : 'bg-white border border-gray-300'">
-          <h3 class="font-normal" :class="feature.isBlue ? 'text-white' : 'text-[#00B1D6]'">
-            {{ feature.title }}
-          </h3>
-          <p class="text-sm ml-2">{{ feature.description }}</p>
-        </div>
+<section class="mt-5 flex items-center justify-center text-center">
+<div class="relative w-full max-w-7xl bg-white p-1 flex flex-col md:flex-row items-center mt-10">
+  <!-- Kotak biru panjang -->
+  <div class=" bg-[#00B1D6] text-white max-w-7xl w-4xl px-4 py-8 md:py-12 w-full md:w-1/2 relative md:absolute md:right-0 flex flex-col items-end md:justify-end">
+    <h2 class="relative text-2xl md:text-3xl text-center md:text-right font-normal z-20">Kenapa memilih kami?</h2>
+
+    <!-- Wrapper Kotak Abu dan Hitam -->
+    <div class="absolute -bottom-6 -left-2 flex flex-wrap gap-2 md:gap-3 z-10">
+      <!-- Kotak abu-abu di sudut kiri mobile -->
+      <div class="grid grid-cols-2 grid-rows-2 gap-2 md:gap-3">
+        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
+        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
+        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
+        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
       </div>
+
+      <!-- Kotak hitam mengikuti kotak abu -->
+      <div class="absolute top-10 left-1/2 transform -translate-x-1/2 border-2 border-gray-400 w-16 h-16 md:w-20 md:h-20 bg-[#3C2C28] z-40"></div>
     </div>
-    
-    <!-- Kotak biru panjang -->
-  <div class="bg-[#00B1D6] text-white px-4 py-8 md:px-20 md:py-10 w-full md:w-auto md:max-w-[950px] relative md:absolute md:right-5 flex flex-col md:flex-row justify-center md:justify-end items-center">
-    <h2 class="text-4xl justify-center items-end font-normal z-20">Kenapa memilih kami?</h2>
-
-    <!-- Kotak hitam di atas kotak biru -->
-   <div class="absolute -left-0 transform translate-x-9 border-2 border-gray-400 -translate-x-1/5 w-20 h-20 bg-[#3C2C28] z-40"></div>
-
-    <!-- Kotak abu-abu di sekeliling kotak hitam -->
-   <div class="absolute -left-0 transform -translate-x-3 grid grid-cols-2 grid-rows-2 gap-3 z-10">
-    <div class="w-20 h-20 bg-gray-300"></div>
-    <div class="w-20 h-20 bg-gray-300"></div>
-    <div class="w-20 h-20 bg-gray-300"></div>
-    <div class="w-20 h-20 bg-gray-300"></div>
-  </div>
-  </div>
   </div>
 
-  
+  <!-- Fitur List -->
+  <div class="relative space-y-6 w-full md:w-1/2 mt-20 md:mt-1">
+    <div 
+      v-for="feature in rentalFeatures" 
+      :key="feature.title"
+      class="flex items-center space-x-2 relative">
+      <!-- Garis konektor (disembunyikan di mobile) -->
+      <div class="absolute h-0.5 bg-[#00B1D6] top-1/2 -right-2 w-full translate-x-2 hidden md:block rounded-r-full"></div>
+<!--  -->
+      <div 
+      class="px-4 py-3 rounded-lg shadow-md w-auto min-w-[100px] text-gray-600 inline-flex items-center relative z-10"
+      :class="feature.isBlue ? 'bg-[#00B1D6] text-white' : 'bg-white border border-gray-300'">
+      <h3 class="font-normal" :class="feature.isBlue ? 'text-white' : 'text-[#00B1D6]'">
+        {{ feature.title }}
+      </h3>
+      <p class="text-sm ml-2">{{ feature.description }}</p>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
 </template>
 
 <script>

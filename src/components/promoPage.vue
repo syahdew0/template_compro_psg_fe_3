@@ -47,39 +47,40 @@
       </h2>
       <p class="text-gray-800 font-normal text-sm mt-2">Yuk, dengar pengalaman seru dari pengguna setia kami!</p>
     </div>
-
-    <!-- Navigation Buttons -->
-    <div class="flex justify-between items-center mb-6">
-      <div class="flex gap-4">
-        <button @click="prevPage" class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors">
-          <i class="fas fa-arrow-left text-lg"></i>
-        </button>
-        <button @click="nextPage" class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors">
-          <i class="fas fa-arrow-right text-lg"></i>
-        </button>
-      </div>
-      <div class="hidden md:flex gap-2">
-        <span class="text-[#00B1D6] font-medium">{{ currentPage }}</span>
-        <span class="text-gray-400">/</span>
-        <span class="text-gray-400">{{ totalPages }}</span>
-      </div>
-    </div>
-
+    <!-- button -->
+    <div class="flex justify-center md gap-4 mt-4">
+    <button 
+      @click="prevPage" 
+      :disabled="currentPage === 2"
+      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+      <i class="fas fa-arrow-left text-lg"></i>
+    </button>
+    <button 
+      @click="nextPage" 
+      :disabled="currentPage === totalPages" 
+      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+      <i class="fas fa-arrow-right text-lg"></i>
+    </button>
+  </div>
     <!-- Testimonial Grid Container -->
     <div class="relative overflow-hidden">
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 transition-transform duration-300 ease-in-out" :style="testimonialTransform">
-        
-        <!-- Testimonial Cards -->
-        <div v-for="(testimonial, index) in testimonials" :key="index" class="bg-white shadow-lg rounded-lg p-6 border border-gray-100" :class="{'hidden md:block': index > 1 && index < 6}">
+      <div 
+        class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 md:gap-4 grid-auto-rows-min  place-items-end transition-transform duration-300 ease-in-out"
+        :style="gridStyle"
+      >
+        <div v-for="(testimonial, index) in paginatedTestimonials" :key="index" 
+          class="bg-white shadow-lg rounded-lg p-6 border border-gray-100 flex flex-col justify-between"
+          :class="gridClasses(index)">
           <div class="flex items-center mb-4">
-            <i class="fas fa-star text-yellow-300"></i>
+            <i class="fas fa-quote-left text-[#00B1D6]"></i>
             <span class="ml-auto text-sm text-gray-500 font-semibold">
               <i class="fas fa-star text-yellow-300"></i> {{ testimonial.rating }}/5
             </span>
           </div>
           <p class="text-gray-600 text-sm leading-relaxed">{{ testimonial.text }}</p>
-          <div class="flex items-center mt-4">
-            <img src="@/assets/profile.png" alt="profile" class="w-8 h-8 rounded-full object-cover">
+          <div class="w-full h-1 bg-gray-100 my-6"></div>
+          <div class="flex items-center">
+            <img :src="testimonial.profileImage" alt="profile" class="w-8 h-8 rounded-full object-cover">
             <span class="ml-3 text-sm font-semibold text-gray-700">{{ testimonial.name }}</span>
           </div>
         </div>
@@ -90,25 +91,27 @@
 
   <!-- KATALOG -->
   <section class="relative">
-    <div class="w-full mt-5">
-      <img src="@/assets/katalogHunian.png" alt="Katalog" class="w-full h-full object-cover" />
-    </div>
-    <div class="relative w-full">
-      <img src="@/assets/PAGE.png" alt="Katalog" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bottom-0 left-0 w-full h-full bg-gradient-to-r from-[#00B1D6] to-[#006176] opacity-80"></div>
-      <div class="absolute bottom-0 left-0 w-full py-10 text-center text-white z-10">
-        <h2 class="text-3xl font-normal">Sudah Siap Menemukan Hunian Nyaman?</h2>
-        <div class="mt-6 flex justify-center space-x-4">
-          <button class="relative z-20 bg-[#00B1D6] border-2 border-[#00B1D6] text-white px-6 py-3 rounded-full font-medium shadow-md hover:bg-white hover:text-[#00B1D6] z-20">
-            Cari Hunian Sekarang
-          </button>
-          <button class="relative z-20 bg-[#00B1D6] border-2 border-[#00B1D6] text-white px-6 py-3 rounded-full font-medium shadow-md hover:bg-white hover:text-[#00B1D6] z-20">
-            Hubungi Kami
-          </button>
-        </div>
+  <div class="w-full mt-5">
+    <img src="@/assets/katalogHunian.png" alt="Katalog" class="w-full h-full object-cover" />
+  </div>
+  <div class="relative w-full">
+    <img src="@/assets/PAGEE.png" alt="Katalog" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-[#00B1D6] to-[#006176] opacity-80"></div>
+    <!-- Container untuk teks dan tombol -->
+    <div class="absolute bottom-0 left-0 w-full py-6 md:py-10 text-center text-white z-10">
+      <h2 class="text-lg md:text-2xl lg:text-3xl font-normal">Sudah Siap Menemukan Hunian Nyaman?</h2>
+      <div class="mt-4 md:mt-6 flex justify-center space-x-2 md:space-x-4">
+        <button class="relative z-20 bg-[#00B1D6] border-2 border-[#00B1D6] text-white text-sm md:text-base px-4 py-2 md:px-6 md:py-3 rounded-full font-medium shadow-md hover:bg-white hover:text-[#00B1D6]">
+          Cari Hunian Sekarang
+        </button>
+        <button class="relative z-20 bg-[#00B1D6] border-2 border-[#00B1D6] text-white text-sm md:text-base px-4 py-2 md:px-6 md:py-3 rounded-full font-medium shadow-md hover:bg-white hover:text-[#00B1D6]">
+          Hubungi Kami
+        </button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 </template>
 
 <script>
@@ -125,39 +128,46 @@ export default {
         seconds: { value: "07", label: "sec" }
       },
       currentPage: 1,
-      totalPages: 3,
+      itemsPerPage: 2,
       testimonials: [
         {
+          profileImage: require('@/assets/profile1.png'),
           name: "Melba Smith",
           text: "Pakai Senyaman Living beneran bikin hemat waktu! Proses booking cepat dan Smart Doorloknya keren banget, ga perlu repot cari kunci!😆",
           rating: 5
         },
         {
+          profileImage: require('@/assets/profile2.png'),
           name: "Jonathan Berge",
           text: "Websitenya simpel dan lengkap! Bisa cari hunian sesuai kebutuhan, harga transparan, dan prosesnya super mudah 👍",
           rating: 5
         },
         {
+          profileImage: require('@/assets/profile3.png'),
           name: "Maurice Windler",
           text: "Dulu cari kost yang nyaman susah banget, sekarang tinggal buka Cloudhomes, pilih, dan selesai! Beneran praktis banget.",
           rating: 5
         },
         {
+          profileImage: require('@/assets/profile4.png'),
           name: "Mindy Larson",
           text: "Suka banget sama sistem check-in nya! Begitu sampai, langsung masuk pakai kode Smart Doorlock. Gak ribet sama sekali!🤩",
           rating: 5
         },
         {
+          profileImage: require('@/assets/profile5.png'),
           name: "Russel Weiman",
           text: "Sistem nya canggih, ga perlu ketemu pemilik atau tuker kunci. Smart Doorlock nya beneran bikin check-in jadi mudah banget!!😍",
           rating: 5
         },
         {
+          profileImage: require('@/assets/profile6.png'),
           name: "Eunice Schumm",
           text: "Dulu cari kost yang nyaman susah banget, sekarang tinggal buka Cloudhomes, pilih, dan selesai! Beneran praktis banget.",
           rating: 5
         },
         {
+          profileImage: require('@/assets/profile7.png'),
           name: "Delia Ebert",
           text: "Suka sama pilihan huniannya! Banyak opsi dengan fasilitas lengkap, dan harganya juga masuk akal. Pasti pakai lagi! 🙌🏻",
           rating: 5
@@ -166,24 +176,40 @@ export default {
     };
   },
   computed: {
+    totalPages() {
+      return Math.ceil(this.testimonials.length / this.itemsPerPage);
+    },
+    paginatedTestimonials() {
+      if (window.innerWidth >= 768) {
+        return this.testimonials; // Menampilkan semua di desktop
+      }
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      return this.testimonials.slice(start, start + this.itemsPerPage);
+    },
     testimonialTransform() {
       if (window.innerWidth < 768) {
-        const offset = (this.currentPage - 1) * 2;
-        return `translateX(-${offset * 50}%)`;
+        const offset = (this.currentPage - 1) * 100;
+        return `translateX(-${offset}%)`;
       }
       return 'translateX(0)';
     }
   },
   methods: {
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
       }
     },
-    prevPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-      }
+    gridClasses(index) {
+      return {
+        'row-span-2': index % 3 === 0,
+        'row-span-3': index % 4 === 0 || index % 5 === 0
+      };
     },
     copyCode() {
       navigator.clipboard.writeText(this.promoCode);
@@ -192,3 +218,5 @@ export default {
   }
 };
 </script>
+
+
