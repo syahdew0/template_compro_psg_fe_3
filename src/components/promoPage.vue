@@ -1,5 +1,5 @@
 <template>
-  <section id="promo" class="w-full h-auto mt-20 flex flex-col items-center justify-center text-center bg-[#E3F6FC]">
+  <section id="promo" class="w-full h-auto mt-10 flex flex-col items-center justify-center text-center bg-[#E3F6FC]">
     <div class="grid grid-cols-1 md:grid-cols-2 w-full h-full">
       <div class="w-full">
         <img :src="promoImage" alt="Promo" class="w-full h-auto object-cover shadow-lg" />
@@ -39,7 +39,7 @@
   </section>
 
   <!-- Review Section -->
-  <div class="py-20 px-6 md:px-16 bg-white">
+  <div class="py-20 px-6 md:px-12 bg-white">
     <!-- Header Section -->
     <div class="text-left mb-6">
       <h2 class="text-4xl font-normal">
@@ -64,34 +64,37 @@
   </div>
     <!-- Testimonial Grid Container -->
     <div class="relative overflow-hidden">
-      <div 
-        class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 md:gap-4 grid-auto-rows-min  place-items-end transition-transform duration-300 ease-in-out"
-        :style="gridStyle"
-      >
-        <div v-for="(testimonial, index) in paginatedTestimonials" :key="index" 
-          class="bg-white shadow-lg rounded-lg p-6 border border-gray-100 flex flex-col justify-between"
-          :class="gridClasses(index)">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-quote-left text-[#00B1D6]"></i>
-            <span class="ml-auto text-sm text-gray-500 font-semibold">
-              <i class="fas fa-star text-yellow-300"></i> {{ testimonial.rating }}/5
-            </span>
-          </div>
-          <p class="text-gray-600 text-sm leading-relaxed">{{ testimonial.text }}</p>
-          <div class="w-full h-1 bg-gray-100 my-6"></div>
-          <div class="flex items-center">
-            <img :src="testimonial.profileImage" alt="profile" class="w-8 h-8 rounded-full object-cover">
-            <span class="ml-3 text-sm font-semibold text-gray-700">{{ testimonial.name }}</span>
-          </div>
-        </div>
+  <div 
+    class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4  place-items-end transition-transform dgap-4 mt-6 md:gap-4 auto-rows-minuration-300 ease-in-out"
+    :style="gridStyle"
+  >
+    <div v-for="(testimonial, index) in paginatedTestimonials" :key="index" 
+      class="bg-white shadow-lg rounded-lg p-6 border border-gray-100 flex flex-col justify-between"
+      :class="gridClasses(index)">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-quote-left text-[#00B1D6]"></i>
+        <span class="ml-auto text-sm text-gray-500 font-semibold">
+          <i class="fas fa-star text-yellow-300"></i> {{ testimonial.rating }}/5
+        </span>
+      </div>
+      <p class="text-gray-600 text-sm leading-relaxed">{{ testimonial.text }}</p>
+      <div class="w-full h-1 bg-gray-100 my-6"></div>
+      <div class="flex items-center">
+        <img :src="testimonial.profileImage" alt="profile" class="w-8 h-8 rounded-full object-cover">
+        <span class="ml-3 text-sm font-semibold text-gray-700">{{ testimonial.name }}</span>
       </div>
     </div>
   </div>
+</div>
+</div>
 
 
   <!-- KATALOG -->
   <section class="relative">
-  <div class="w-full mt-5">
+    <div class="relative md:h-52 md:w-52 ">
+      <img src="@/assets/elemen.png" alt="">
+    </div>
+  <div class="w-full  ">
     <img src="@/assets/katalogHunian.png" alt="Katalog" class="w-full h-full object-cover" />
   </div>
   <div class="relative w-full">

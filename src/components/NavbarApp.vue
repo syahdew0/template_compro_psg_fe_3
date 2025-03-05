@@ -19,7 +19,7 @@
       </div>
 
       <!-- Tombol Menu Mobile -->
-      <button class="md:hidden text-white focus:outline-none pr-4" @click="menuOpen = !menuOpen">
+      <button class="md:hidden text-gray-200 focus:outline-none pr-4" @click="menuOpen = !menuOpen">
         <i class="fas fa-bars" v-if="!menuOpen"></i>
         <i class="fas fa-times" v-else></i>
       </button>
@@ -30,7 +30,7 @@
       <a href="#HorizontalSlides" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Beranda</a>
       <a href="#keunggulan" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Keunggulan</a>
       <a href="#carakerja" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Cara Kerja</a>
-      <a href="#promoPage" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Promo</a>
+      <a href="#promo" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Promo</a>
     </div>
   </nav>
 </template>

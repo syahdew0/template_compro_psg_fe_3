@@ -61,45 +61,63 @@
 <!-- KENAPA MEMILIH KAMI --> 
 <section class="mt-5 flex items-center justify-center text-center">
 <div class="relative w-full max-w-7xl bg-white p-1 flex flex-col md:flex-row items-center mt-10">
-  <!-- Kotak biru panjang -->
-  <div class=" bg-[#00B1D6] text-white max-w-7xl w-4xl px-4 py-8 md:py-12 w-full md:w-1/2 relative md:absolute md:right-0 flex flex-col items-end md:justify-end">
+  <!-- Kotak biru panjanggg -->
+  <div class=" bg-[#00B1D6] text-white max-w-7xl w-4xl px-4 py-8 md:py-12 w-full md:w-1/2 relative md:absolute md:-right-10 flex flex-col items-end md:justify-end">
     <h2 class="relative text-2xl md:text-3xl text-center md:text-right font-normal z-20">Kenapa memilih kami?</h2>
 
-    <!-- Wrapper Kotak Abu dan Hitam -->
-    <div class="absolute -bottom-6 -left-2 flex flex-wrap gap-2 md:gap-3 z-10">
-      <!-- Kotak abu-abu di sudut kiri mobile -->
+    <!-- Wrapp -->
+    <div class="absolute -bottom-6 -left-0 flex flex-wrap gap-2 md:gap-3 z-10">
       <div class="grid grid-cols-2 grid-rows-2 gap-2 md:gap-3">
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
-      </div>
-
-      <!-- Kotak hitam mengikuti kotak abu -->
       <div class="absolute top-10 left-1/2 transform -translate-x-1/2 border-2 border-gray-400 w-16 h-16 md:w-20 md:h-20 bg-[#3C2C28] z-40"></div>
     </div>
   </div>
+</div>
 
   <!-- Fitur List -->
-  <div class="relative space-y-6 w-full md:w-1/2 mt-20 md:mt-1">
-    <div 
-      v-for="feature in rentalFeatures" 
-      :key="feature.title"
-      class="flex items-center space-x-2 relative">
-      <!-- Garis konektor (disembunyikan di mobile) -->
-      <div class="absolute h-0.5 bg-[#00B1D6] top-1/2 -right-2 w-full translate-x-2 hidden md:block rounded-r-full"></div>
-<!--  -->
-      <div 
-      class="px-4 py-3 rounded-lg shadow-md w-auto min-w-[100px] text-gray-600 inline-flex items-center relative z-10"
-      :class="feature.isBlue ? 'bg-[#00B1D6] text-white' : 'bg-white border border-gray-300'">
-      <h3 class="font-normal" :class="feature.isBlue ? 'text-white' : 'text-[#00B1D6]'">
-        {{ feature.title }}
-      </h3>
-      <p class="text-sm ml-2">{{ feature.description }}</p>
+  <div class="relative space-y-6 justify-start items-start w-full md:w-1/2 mt-20 md:mt-2 pl-0 md:pl-0">
+           <div class="bg-white border-2 border-gray-100 rounded-lg p-3 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:-ml-2 inline-block">
+             <h3 class="text-sm font-normal">
+               <span class="text-[#00B1D6]">Booking Mudah & Cepat :</span> Pemesanan 100% online via Cloudhomes
+             </h3>
+           </div>
+             <div class="absolute top-0 -right-11 hidden md:block z-10">
+               <img src="@/assets/Vector 19.png" alt="">
+             </div>
+           
+           <div class="bg-[#00B1D6] rounded-lg p-3 cursor-pointer inline-block ml-10">
+             <h3 class="text-sm font-normal text-white">Lokasi Strategis : Banyak pilihan di pusat kota</h3>
+           </div>
+           <div class="absolute top-16 -right-14 hidden md:block z-20">
+               <img src="@/assets/Vector 21.png" alt="">
+             </div>
+           <div class="bg-white rounded-lg p-3 border-gray-100 border-2 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:mr-20 inline-block">
+             <h3 class="text-sm font-normal">
+               <span class="text-[#00B1D6]">Fitur Smart Doorlock :</span> Check-in mudah tanpa kunci manual
+             </h3>
+           </div>
+           <div class="absolute bottom-1/2 hidden md:block -right-11 z-10">
+             <img src="@/assets/Vector 23.png" alt="">
+           </div>
+           <div class="bg-[#00B1D6] rounded-lg p-3 justify-center items-center cursor-pointer inline-block md:ml-28">
+             <h3 class="text-sm font-normal text-white">Harga Transparan : Tanpa biaya tersembunyi</h3>
+           </div>
+           <div class="absolute bottom-24 -right-10 hidden md:block z-10">
+               <img src="@/assets/Vector 22.png" alt="">
+             </div>
+           <div class="bg-white rounded-lg p-3 border-2 border-gray-100 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:mr-20 inline-block">
+             <h3 class="text-sm font-normal">
+               <span class="text-[#00B1D6]">Banyak Pilihan Hunian :</span> Dari kost hingga apartment mewah 
+             </h3>
+           </div>
+           <div class="absolute bottom-6 -right-10 hidden md:block z-10">
+               <img src="@/assets/Vector 20.png" alt="">
+             </div>
     </div>
-  </div>
-</div>
-</div>
+    </div>
 </section>
 
 </template>
@@ -124,14 +142,6 @@ export default {
         { title: "Proses Pemesanan Cepat", description: "hanya dalam beberapa detik" },
         { title: "Check-in Tanpa Ribet", description: "dengan Smart Doorlock" },
         { title: "Keamanan Terjamin", description: "dengan verifikasi pengguna" },
-      ],
-      currentPage: 1,
-      rentalFeatures: [
-        { title: 'Booking Mudah & Cepat', description: 'Pemesanan 100% online via Cloudhomes', isBlue: false },
-        { title: 'Lokasi Strategis', description: 'Banyak pilihan di pusat kota', isBlue: true },
-        { title: 'Fitur Smart Doorlock', description: 'Check-in mudah tanpa kunci manual', isBlue: false },
-        { title: 'Harga Transparan', description: 'Tanpa biaya tersembunyi', isBlue: true },
-        { title: 'Banyak Pilihan Hunian', description: 'Dari kost hingga apartment mewah', isBlue: false }
       ],
 
       hoverIndex: null,

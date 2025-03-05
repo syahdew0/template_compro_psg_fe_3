@@ -39,9 +39,11 @@
   <section class="py-10 bg-white overflow-hidden">
   <div class="max-w-screen-7xl mx-auto px-6 relative">
     <!-- Judul -->
-    <div class="flex flex-col items-center md:items-start  justify-center md:justify-between">
+    <div class="flex flex-col items-center md:items-start justify-center md:justify-between relative">
+     
+
       <div 
-        class="relative md:relative max-w-7xl w-full md:w-1/3 md:-bottom-40 bg-[#00B1D6] text-white text-2xl md:text-3xl font-normal px-8 py-6 flex justify-between items-center mt-6 md:mt-0"
+        class="relative md:relative max-w-7xl w-full md:w-1/3 md:-bottom-48 bg-[#00B1D6] text-white text-2xl md:text-3xl font-normal px-8 py-6 flex justify-between items-center mt-6 md:mt-0"
       >
         <span>Rekomendasi Properti</span>
         <div class="flex space-x-2">
@@ -49,6 +51,11 @@
             <i class="fas fa-chevron-left"></i>
           </button>
         </div>
+      </div>
+
+      <!-- Elemen di bawah kiri kotak biru -->
+      <div class="absolute -bottom-3 -left-10 md:-bottom-20 md:-left-5 w-full h-full md:w-40 md:h-40">
+        <img src="@/assets/elemen.png" alt="">
       </div>
     </div>
 
@@ -77,6 +84,7 @@
     </div>
   </div>
 </section>
+
 
 
 </template>

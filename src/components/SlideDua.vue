@@ -6,7 +6,7 @@
     <div class="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-10 text-left text-white w-[90%] max-w-2xl md:max-w-4xl lg:max-w-5xl px-4 md:px-0">
       <h2 class="italic text-base md:text-lg">Dari kost harian hingga apartemen Eksklusif</h2>
       <h1 class="text-3xl md:text-5xl font-bold my-4 leading-tight">Semua Jenis Hunian Ada di Cloudhomes</h1>
-      <p class="text-sm md:text-lg">Sesuaikan pilihan hunian dengan kebutuhan, mulai dari sewa harian, bulanan hingga tahunan</p>
+      <p class="text-sm md:text-lg">Sesuaikan pilihan hunian dengan kebutuhan, mulai dari sewa harian, bulanan hingga tahunan.</p>
 
       <div class="flex flex-col sm:flex-row gap-5 p-6">
         <button class="w-full sm:w-auto px-5 py-2 text-base font-reguler rounded-full bg-[#00B1D6] text-white border-2 border-[#00B1D6] transition-all duration-300 hover:bg-white hover:text-[#00B1D6]">

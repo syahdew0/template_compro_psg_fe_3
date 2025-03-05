@@ -14,29 +14,29 @@
 
     <!-- Navigation Buttons -->
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-6">
-      <button 
-        v-for="num in [1, 2, 3]" 
-        :key="num"
-        @click="goToSlide(num)"
-        class="relative  items-center justify-center "
-        :class="currentSlide === num ? 'h-12' : 'h-8'"
-      >
-        <!-- Angka -->
-        <span 
-          class="w-10 h-10 flex items-center justify-center rounded-full text-white font-normal transition-all duration-300"
-          :class="currentSlide === num ? ' text-xl' : ' text-lg'"
-        >
-          {{ num }}
-        </span>
-        
-        <!-- Dua Garis di Bawah Jika Aktif -->
-        <div v-if="currentSlide === num" class="flex flex-col items-center mt-1">
-          <div class="w-6 h-1 bg-gray-400"></div>
-          <div class="w-6 h-1 bg-gray-400 mt-1"></div>
-        </div>
-      </button>
+  <button 
+    v-for="num in [1, 2, 3]" 
+    :key="num"
+    @click="goToSlide(num)"
+    class="relative flex flex-col items-center justify-center transition-all duration-300"
+    :class="currentSlide === num ? 'h-14 transform -translate-y-2' : 'h-8'"
+  >
+    <!-- Angka -->
+    <span 
+      class="w-10 h-10 flex items-center justify-center text-white font-semibold transition-all duration-300"
+      :class="currentSlide === num ? 'text-xl scale-125' : 'text-lg scale-100'"
+    >
+      {{ num }}
+    </span>
+    
+    <!-- Dua Garis di Bawah Jika Aktif -->
+    <div v-if="currentSlide === num" class="flex flex-col items-center mt-1 transition-all duration-300">
+      <div class="w-6 h-1 bg-white"></div>
+      <div class="w-6 h-1 bg-white mt-1"></div>
     </div>
-  </div>
+  </button>
+</div>
+</div>
 </template>
 
 <script setup>
