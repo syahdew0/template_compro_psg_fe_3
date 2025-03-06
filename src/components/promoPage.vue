@@ -9,15 +9,21 @@
         <p class="text-gray-600 text-sm md:text-base mt-4">
           Jangan lewatkan promo spesial untuk pengalaman sewa yang lebih hemat dan nyaman!
         </p>
-        <div class="flex items-center space-x-2 md:space-x-3 text-[#007399] text-3xl md:text-4xl font-semibold my-6">
-          <template v-for="(unit, key) in countdown" :key="key">
-            <div class="flex flex-col items-center">
-              <span>{{ unit.value }}</span>
-              <span class="text-xs md:text-sm font-normal text-[#007399] uppercase">{{ unit.label }}</span>
-            </div>
-            <span v-if="key !== Object.keys(countdown).length - 1" class="text-2xl md:text-lg font-normal text-[#007399]">/</span>
-          </template>
-        </div> 
+        <div class="flex items-center space-x-2 md:space-x-3 text-[#007399] text-3xl md:text-4xl font-normal my-6">
+    <template v-for="(unit, key, index) in countdown" :key="key">
+      <div class="flex flex-col items-center">
+      <span>{{ unit.value }}</span>
+      <span class="text-xs md:text-sm font-normal text-[#007399] uppercase">{{ unit.label }}</span>
+    </div>
+    
+    <!-- Separator Logic -->
+    <span v-if="index < Object.keys(countdown).length - 1"
+      class="text-2xl md:text-lg font-normal text-[#007399]">
+      {{ index === 0 ? '/' : ':' }}
+      </span>
+      </template>
+    </div>
+
         <div class="relative w-full mt-6 flex justify-center">
           <h3 class="absolute -top-3 left-1/2 transform -translate-x-1/2 text-sm md:text-2xl font-normal opacity-30 text-gray-400 whitespace-nowrap">
             DISKON 15% UNTUK PENGGUNA BARU
@@ -36,10 +42,11 @@
         </div>
       </div>
     </div>
-  </section>
+ </section>
 
+ <!-- Review section tinggal menentukan posisinya dari kanan ke kiri dan atas baawah si gridnya itu -->
   <!-- Review Section -->
-  <div class="py-20 px-6 md:px-12 bg-white">
+  <div class="py-20 px-6 md:px-10 bg-white">
     <!-- Header Section -->
     <div class="text-left mb-6">
       <h2 class="text-4xl font-normal">
@@ -47,59 +54,65 @@
       </h2>
       <p class="text-gray-800 font-normal text-sm mt-2">Yuk, dengar pengalaman seru dari pengguna setia kami!</p>
     </div>
-    <!-- button -->
-    <div class="flex justify-center md gap-4 mt-4">
-    <button 
-      @click="prevPage" 
-      :disabled="currentPage === 2"
-      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
-      <i class="fas fa-arrow-left text-lg"></i>
-    </button>
-    <button 
-      @click="nextPage" 
-      :disabled="currentPage === totalPages" 
-      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
-      <i class="fas fa-arrow-right text-lg"></i>
-    </button>
-  </div>
-    <!-- Testimonial Grid Container -->
-    <div class="relative overflow-hidden">
-  <div 
-    class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4  place-items-end transition-transform dgap-4 mt-6 md:gap-4 auto-rows-minuration-300 ease-in-out"
-    :style="gridStyle"
-  >
-    <div v-for="(testimonial, index) in paginatedTestimonials" :key="index" 
-      class="bg-white shadow-lg rounded-lg p-6 border border-gray-100 flex flex-col justify-between"
-      :class="gridClasses(index)">
-      <div class="flex items-center mb-4">
-        <i class="fas fa-quote-left text-[#00B1D6]"></i>
-        <span class="ml-auto text-sm text-gray-500 font-semibold">
-          <i class="fas fa-star text-yellow-300"></i> {{ testimonial.rating }}/5
-        </span>
-      </div>
-      <p class="text-gray-600 text-sm leading-relaxed">{{ testimonial.text }}</p>
-      <div class="w-full h-1 bg-gray-100 my-6"></div>
-      <div class="flex items-center">
-        <img :src="testimonial.profileImage" alt="profile" class="w-8 h-8 rounded-full object-cover">
-        <span class="ml-3 text-sm font-semibold text-gray-700">{{ testimonial.name }}</span>
+
+    <!-- Navigasi -->
+    <div class="flex justify-center gap-4 mt-4 ">
+      <button 
+        @click="prevPage" 
+        :disabled="currentPage === 1"
+        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+        <i class="fas fa-arrow-left text-lg"></i>
+      </button>
+      <button 
+        @click="nextPage" 
+        :disabled="currentPage === totalPages" 
+        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+        <i class="fas fa-arrow-right text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Grid Testimonial -->
+    <div class="relative mt-6">
+      <div 
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 place-items-start transition-transform duration-300 ease-in-out"
+        :style="gridStyle"
+      >
+        <div v-for="(testimonial, index) in paginatedTestimonials" :key="index"
+          class="bg-white shadow-lg rounded-lg p-6 border-2 border-gray-100 flex shadow-lg shadow-[#00B1D6]/30 flex-col justify-between"
+          :class="gridClasses(index)">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-quote-left text-[#00B1D6]"></i>
+            <span class="ml-auto text-sm text-gray-500 font-semibold">
+              <i class="fas fa-star text-yellow-300"></i> {{ testimonial.rating }}/5
+            </span>
+          </div>
+          <p class="text-gray-600 text-sm leading-relaxed">{{ testimonial.text }}</p>
+          <div class="w-full h-1 bg-gray-100 my-6"></div>
+          <div class="flex items-center">
+            <img :src="testimonial.profileImage" alt="profile" class="w-8 h-8 rounded-full object-cover">
+            <span class="ml-3 text-sm font-semibold text-gray-700">{{ testimonial.name }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 
+<!-- KATALOG -->
+<section class="relative mt-24">
+  <!-- Elemen di atas kiri katalog -->
+  <div class="absolute -top-40 md:-top-60 left-0 z-40 w-40 md:w-60 h-auto">
+    <img src="@/assets/elemen.png" alt="Elemen Dekoratif">
+  </div>
 
-  <!-- KATALOG -->
-  <section class="relative">
-    <div class="relative md:h-52 md:w-52 ">
-      <img src="@/assets/elemen.png" alt="">
-    </div>
-  <div class="w-full  ">
+  <div class="w-full relative">
+    <!-- Gambar katalog -->
     <img src="@/assets/katalogHunian.png" alt="Katalog" class="w-full h-full object-cover" />
   </div>
+
   <div class="relative w-full">
     <img src="@/assets/PAGEE.png" alt="Katalog" class="w-full h-full object-cover" />
     <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-[#00B1D6] to-[#006176] opacity-80"></div>
+
     <!-- Container untuk teks dan tombol -->
     <div class="absolute bottom-0 left-0 w-full py-6 md:py-10 text-center text-white z-10">
       <h2 class="text-lg md:text-2xl lg:text-3xl font-normal">Sudah Siap Menemukan Hunian Nyaman?</h2>
@@ -122,6 +135,7 @@ export default {
   name: 'PromoPage',
   data() {
     return {
+      windowWidth: window.innerWidth, // Menyimpan ukuran layar
       promoImage: require('@/assets/promo.png'),
       promoCode: "LIVING15",
       countdown: {
@@ -132,6 +146,8 @@ export default {
       },
       currentPage: 1,
       itemsPerPage: 2,
+      testimonialsPerPage: 4,
+      isMobile: window.innerWidth < 768, // Menyimpan status mobile
       testimonials: [
         {
           profileImage: require('@/assets/profile1.png'),
@@ -179,25 +195,32 @@ export default {
     };
   },
   computed: {
+   
     totalPages() {
       return Math.ceil(this.testimonials.length / this.itemsPerPage);
     },
     paginatedTestimonials() {
-      if (window.innerWidth >= 768) {
-        return this.testimonials; // Menampilkan semua di desktop
-      }
-      const start = (this.currentPage - 1) * this.itemsPerPage;
-      return this.testimonials.slice(start, start + this.itemsPerPage);
+      return this.isMobile
+        ? this.testimonials.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
+        : this.testimonials;
     },
-    testimonialTransform() {
-      if (window.innerWidth < 768) {
-        const offset = (this.currentPage - 1) * 100;
-        return `translateX(-${offset}%)`;
-      }
-      return 'translateX(0)';
+    gridStyle() {
+      return {
+        transform: `translateX(-${(this.currentPage - 6) * 100}%)`
+      };
+    }
+  },
+  watch: {
+    windowWidth(newWidth) {
+      this.currentPage = 1;
+      this.isMobile = newWidth < 768;
     }
   },
   methods: {
+    updateWindowSize() {
+      this.windowWidth = window.innerWidth;
+      
+    },
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
@@ -208,18 +231,31 @@ export default {
         this.currentPage++;
       }
     },
-    gridClasses(index) {
-      return {
-        'row-span-2': index % 3 === 0,
-        'row-span-3': index % 4 === 0 || index % 5 === 0
-      };
-    },
     copyCode() {
       navigator.clipboard.writeText(this.promoCode);
       alert("Kode promo disalin: " + this.promoCode);
+    },
+    gridClasses(index) {
+    if (this.windowWidth >= 1024) {
+      if (index % 1 === 0) {
+        return "col-span-1 row-span-2 mt-2"; // Elemen pertama 
+      } else {
+        return "col-span-1 row-span-2"; // Elemen berikutnya 
+      }
+    } else if (this.windowWidth >= 768) {
+      return index % 2 === 0 ? "col-span-1" : "col-span-1 mt-4";
     }
+    return "col-span-1";
+  }
+  },
+  mounted() {
+    window.addEventListener("resize", () => {
+      this.windowWidth = window.innerWidth;
+      this.testimonialsPerPage = this.windowWidth < 768 ? 2 : 4;
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.updateWindowSize);
   }
 };
 </script>
-
-

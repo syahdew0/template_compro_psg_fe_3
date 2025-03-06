@@ -1,5 +1,5 @@
 <template>
-  <section id="keunggulan" class=" w-full h-auto flex flex-col items-center justify-center text-center pt-20 md:pt-24">
+  <section id="keunggulan" class=" w-full h-auto flex flex-col items-center justify-center text-center pt-20 md:pt-22">
     <div class="relative z-10 flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-2 p-6 bg-white backdrop-blur-lg mx-auto w-full max-w-full md:max-w-7xl">
       <!-- Mockup Images -->
       <div class="flex flex-row md:flex-col space-x-2 md:space-x-0 md:space-y-2 overflow-x-auto md:overflow-visible">
@@ -59,14 +59,14 @@
 </section>
 
 <!-- KENAPA MEMILIH KAMI --> 
-<section class="mt-5 flex items-center justify-center text-center">
-<div class="relative w-full max-w-7xl bg-white p-1 flex flex-col md:flex-row items-center mt-10">
+<section class="mt-5 flex w-full max-w-7xl mx-auto items-center justify-center text-center -pl-2">
+<div class="relative w-full max-w-7xl bg-white p-0 flex flex-col md:flex-row items-center mt-10">
   <!-- Kotak biru panjanggg -->
-  <div class=" bg-[#00B1D6] text-white max-w-7xl w-4xl px-4 py-8 md:py-12 w-full md:w-1/2 relative md:absolute md:-right-10 flex flex-col items-end md:justify-end">
+  <div class=" bg-[#00B1D6] text-white  w-3xl px-4 py-8 md:py-12 w-full md:w-1/2 relative md:absolute md:-right-9 flex flex-col items-end md:justify-end">
     <h2 class="relative text-2xl md:text-3xl text-center md:text-right font-normal z-20">Kenapa memilih kami?</h2>
 
     <!-- Wrapp -->
-    <div class="absolute -bottom-6 -left-0 flex flex-wrap gap-2 md:gap-3 z-10">
+    <div class="absolute -bottom-5 -left-2 flex flex-wrap gap-2 md:gap-3 z-10">
       <div class="grid grid-cols-2 grid-rows-2 gap-2 md:gap-3">
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
@@ -78,7 +78,7 @@
 </div>
 
   <!-- Fitur List -->
-  <div class="relative space-y-6 justify-start items-start w-full md:w-1/2 mt-20 md:mt-2 pl-0 md:pl-0">
+  <div class="relative space-y-6 justify-start items-start w-full md:w-1/2 mt-20 md:mt-2 -pl-2">
            <div class="bg-white border-2 border-gray-100 rounded-lg p-3 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:-ml-2 inline-block">
              <h3 class="text-sm font-normal">
                <span class="text-[#00B1D6]">Booking Mudah & Cepat :</span> Pemesanan 100% online via Cloudhomes
@@ -113,7 +113,7 @@
                <span class="text-[#00B1D6]">Banyak Pilihan Hunian :</span> Dari kost hingga apartment mewah 
              </h3>
            </div>
-           <div class="absolute bottom-6 -right-10 hidden md:block z-10">
+           <div class="absolute bottom-7 -right-10 hidden md:block z-10">
                <img src="@/assets/Vector 20.png" alt="">
              </div>
     </div>
