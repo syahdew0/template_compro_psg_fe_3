@@ -62,11 +62,13 @@
 <section class="mt-5 flex w-full max-w-7xl mx-auto items-center justify-center text-center -pl-2">
 <div class="relative w-full max-w-7xl bg-white p-0 flex flex-col md:flex-row items-center mt-10">
   <!-- Kotak biru panjanggg -->
-  <div class=" bg-[#00B1D6] text-white  w-3xl px-4 py-8 md:py-12 w-full md:w-1/2 relative md:absolute md:-right-9 flex flex-col items-end md:justify-end">
+  <div class=" bg-[#00B1D6] text-white  w-max-3xl px-2 md:px-8 py-10 md:py-12 w-full md:w-1/2 relative md:absolute md:-right-9 flex flex-col items-end md:justify-end">
     <h2 class="relative text-2xl md:text-3xl text-center md:text-right font-normal z-20">Kenapa memilih kami?</h2>
-
+    <div class="absolute -bottom-50 w-80 h-auto right-0 md:hidden">
+      <img src="@/assets/elemen2 copy.png" alt="">
+    </div>
     <!-- Wrapp -->
-    <div class="absolute -bottom-5 -left-2 flex flex-wrap gap-2 md:gap-3 z-10">
+    <div class="absolute -bottom-3 md:-bottom-5 -left-2 flex flex-wrap gap-2 md:gap-3 z-10">
       <div class="grid grid-cols-2 grid-rows-2 gap-2 md:gap-3">
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>

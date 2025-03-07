@@ -44,63 +44,72 @@
     </div>
  </section>
 
- <!-- Review section tinggal menentukan posisinya dari kanan ke kiri dan atas baawah si gridnya itu -->
+<!-- okee ini udanselesao tinggal besok lanjut backend nya, ini mau rapihin dulu yang posisinya kurang pas  -->
   <!-- Review Section -->
-  <div class="py-20 px-6 md:px-10 bg-white">
+  <div class="py-20 px-4 md:px-10 bg-white mx-auto">
     <!-- Header Section -->
     <div class="text-left mb-6">
       <h2 class="text-4xl font-normal">
         Apa <span class="text-[#00B1D6]">kata</span> mereka <span class="text-[#00B1D6]">tentang</span> kami?
       </h2>
-      <p class="text-gray-800 font-normal text-sm mt-2">Yuk, dengar pengalaman seru dari pengguna setia kami!</p>
-    </div>
-
-    <!-- Navigasi -->
-    <div class="flex justify-center gap-4 mt-4 ">
-      <button 
-        @click="prevPage" 
-        :disabled="currentPage === 1"
-        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
-        <i class="fas fa-arrow-left text-lg"></i>
-      </button>
-      <button 
-        @click="nextPage" 
-        :disabled="currentPage === totalPages" 
-        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
-        <i class="fas fa-arrow-right text-lg"></i>
-      </button>
+      <p class="text-gray-800 font-normal text-sm mt-4">Yuk, dengar pengalaman seru dari pengguna setia kami!</p>
     </div>
 
     <!-- Grid Testimonial -->
-    <div class="relative mt-6">
-      <div 
-        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 place-items-start transition-transform duration-300 ease-in-out"
-        :style="gridStyle"
-      >
-        <div v-for="(testimonial, index) in paginatedTestimonials" :key="index"
-          class="bg-white shadow-lg rounded-lg p-6 border-2 border-gray-100 flex shadow-lg shadow-[#00B1D6]/30 flex-col justify-between"
-          :class="gridClasses(index)">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-quote-left text-[#00B1D6]"></i>
-            <span class="ml-auto text-sm text-gray-500 font-semibold">
-              <i class="fas fa-star text-yellow-300"></i> {{ testimonial.rating }}/5
-            </span>
-          </div>
-          <p class="text-gray-600 text-sm leading-relaxed">{{ testimonial.text }}</p>
-          <div class="w-full h-1 bg-gray-100 my-6"></div>
-          <div class="flex items-center">
-            <img :src="testimonial.profileImage" alt="profile" class="w-8 h-8 rounded-full object-cover">
-            <span class="ml-3 text-sm font-semibold text-gray-700">{{ testimonial.name }}</span>
-          </div>
-        </div>
+    <div class="relative mt-6 overflow-hidden flex justify-center md:justify-end md:mb-5 pr-2 pl-2">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 place-items-start w-full md:w-auto transition-transform duration-300 ease-in-out">
+
+
+    <div class="flex justify-center md:justify-start items-center gap-3 mt-5">
+    <button 
+      @click="prevPage" 
+      :disabled="currentPage === 1"
+      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+      <i class="fas fa-arrow-left text-lg"></i>
+    </button>
+    <button 
+      @click="nextPage" 
+      :disabled="currentPage === totalPages" 
+      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+      <i class="fas fa-arrow-right text-lg"></i>
+    </button>
+</div>
+  <div class="absolute left-30 top-1/2 md:top-20 md:left-56 w-full md:w-40 md:h-40 hidden md:block">
+    <img src="@/assets/elemen3.png" alt="">
+</div>
+
+  <div class="absolute md:left-1/2  md:-translate-x-1/5 md:-bottom-24 w-full md:w-40 md:h-40 hidden md:block">
+    <img src="@/assets/elemen4.png" alt="">
+  </div>
+  <div class="absolute top-0 right-24 md:w-40 md:h-40 hidden md:block">
+    <img src="@/assets/elemen5.png" alt="">
+  </div>
+
+ 
+    <div v-for="(testimonial, index) in paginatedTestimonials" :key="index"
+      class="bg-white rounded-lg p-6 border-2 border-gray-100 flex shadow-lg shadow-[#00B1D6]/30 flex-col justify-between"
+      :class="gridClasses(index)">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-quote-left text-[#00B1D6]"></i>
+        <span class="ml-auto text-sm text-gray-500 font-semibold">
+          <i class="fas fa-star text-yellow-300"></i> {{ testimonial.rating }}/5
+        </span>
+      </div>
+      <p class="text-gray-600 text-sm leading-relaxed">{{ testimonial.text }}</p>
+      <div class="w-full h-1 bg-gray-100 my-6"></div>
+      <div class="flex items-center">
+        <img :src="testimonial.profileImage" alt="profile" class="w-8 h-8 rounded-full object-cover">
+        <span class="ml-3 text-sm font-semibold text-gray-700">{{ testimonial.name }}</span>
       </div>
     </div>
   </div>
+</div>
+  </div>
 
 <!-- KATALOG -->
-<section class="relative mt-24">
+<section class="relative mt-10">
   <!-- Elemen di atas kiri katalog -->
-  <div class="absolute -top-40 md:-top-60 left-0 z-40 w-40 md:w-60 h-auto">
+  <div class="absolute  -top-40 md:-top-80 left-0 z-10 w-40 md:w-80 h-auto">
     <img src="@/assets/elemen.png" alt="Elemen Dekoratif">
   </div>
 
@@ -236,22 +245,39 @@ export default {
       alert("Kode promo disalin: " + this.promoCode);
     },
     gridClasses(index) {
-    if (this.windowWidth >= 1024) {
-      if (index % 1 === 0) {
-        return "col-span-1 row-span-2 mt-2"; // Elemen pertama 
-      } else {
-        return "col-span-1 row-span-2"; // Elemen berikutnya 
-      }
-    } else if (this.windowWidth >= 768) {
-      return index % 2 === 0 ? "col-span-1" : "col-span-1 mt-4";
+  if (this.windowWidth >= 1024) {
+    // Efek bergelombang untuk desktop
+    if (index % 6 === 0) {
+      return "mt-8";
     }
-    return "col-span-1";
+    if (index % 6 === 1) {
+      return "mt-1";
+    }
+    if (index % 6 === 2) {
+      return "mt-10";
+    }
+    if (index % 6 === 3) {
+      return "-mt-44";
+    }
+    if (index % 6 === 4) {
+      return "mt-2";
+    }
+    if (index % 6 === 5) {
+      return "-mt-11";
+    }
+  } else if (this.windowWidth >= 768) {
+    // Tablet: Sedikit bergelombang
+    return index % 2 === 1 ? "mt-4" : "mt-0";
   }
+  // Mobile: Grid harus sejajar dan sama besar
+  return "mt-1"; 
+}
+
   },
   mounted() {
     window.addEventListener("resize", () => {
       this.windowWidth = window.innerWidth;
-      this.testimonialsPerPage = this.windowWidth < 768 ? 2 : 4;
+      this.testimonialsPerPage = this.windowWidth < 768 ? 1 : 4;
     });
   },
   beforeUnmount() {

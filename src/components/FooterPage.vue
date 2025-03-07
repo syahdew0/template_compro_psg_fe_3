@@ -1,6 +1,6 @@
 <template>
     <footer class="bg-gray-100 py-10 px-5">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-6 ">
+      <div class="w-full mx-auto grid grid-cols-1 md:grid-cols-5 gap-6">
         <!-- Brand Section -->
         <div>
           <img src="@/assets/logo.png" alt="Senyaman Logo" class="h-12 mb-3" />
@@ -16,7 +16,6 @@
             <i class="fa-brands fa-youtube text-2xl"></i>
           </div>
         </div>
-  
         <!-- Quick Links -->
         <div>
           <h4 class="text-xl font-reguler mb-3 text-[#7E7E7E] ml-5">Quick Links</h4>
