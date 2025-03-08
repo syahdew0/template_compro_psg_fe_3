@@ -83,17 +83,17 @@
   <div class="relative space-y-6 justify-start items-start w-full md:w-1/2 mt-20 md:mt-2 -pl-2">
            <div class="bg-white border-2 border-gray-100 rounded-lg p-3 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:-ml-2 inline-block">
              <h3 class="text-sm font-normal">
-               <span class="text-[#00B1D6]">Booking Mudah & Cepat :</span> Pemesanan 100% online via Cloudhomes
+               <span class="text-[#00B1D6] ">Booking Mudah & Cepat :</span> Pemesanan 100% online via Cloudhomes
              </h3>
            </div>
-             <div class="absolute top-0 -right-11 hidden md:block z-10">
+             <div class="absolute top-0 -right-11 hidden md:block z-0">
                <img src="@/assets/Vector 19.png" alt="">
              </div>
            
            <div class="bg-[#00B1D6] rounded-lg p-3 cursor-pointer inline-block ml-10">
              <h3 class="text-sm font-normal text-white">Lokasi Strategis : Banyak pilihan di pusat kota</h3>
            </div>
-           <div class="absolute top-16 -right-14 hidden md:block z-20">
+           <div class="absolute top-16 -right-14 hidden md:block z-0">
                <img src="@/assets/Vector 21.png" alt="">
              </div>
            <div class="bg-white rounded-lg p-3 border-gray-100 border-2 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:mr-20 inline-block">
@@ -101,13 +101,13 @@
                <span class="text-[#00B1D6]">Fitur Smart Doorlock :</span> Check-in mudah tanpa kunci manual
              </h3>
            </div>
-           <div class="absolute bottom-1/2 hidden md:block -right-11 z-10">
+           <div class="absolute bottom-1/2 hidden md:block -right-11 z-0">
              <img src="@/assets/Vector 23.png" alt="">
            </div>
            <div class="bg-[#00B1D6] rounded-lg p-3 justify-center items-center cursor-pointer inline-block md:ml-28">
              <h3 class="text-sm font-normal text-white">Harga Transparan : Tanpa biaya tersembunyi</h3>
            </div>
-           <div class="absolute bottom-24 -right-10 hidden md:block z-10">
+           <div class="absolute bottom-24 -right-10 hidden md:block z-0">
                <img src="@/assets/Vector 22.png" alt="">
              </div>
            <div class="bg-white rounded-lg p-3 border-2 border-gray-100 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:mr-20 inline-block">
@@ -115,7 +115,7 @@
                <span class="text-[#00B1D6]">Banyak Pilihan Hunian :</span> Dari kost hingga apartment mewah 
              </h3>
            </div>
-           <div class="absolute bottom-7 -right-10 hidden md:block z-10">
+           <div class="absolute bottom-7 -right-10 hidden md:block z-0">
                <img src="@/assets/Vector 20.png" alt="">
              </div>
     </div>
@@ -191,6 +191,7 @@ html {
     right: -30px;
   }
 }
+
 
 @media (max-width: 768px) {
   .connect-line {

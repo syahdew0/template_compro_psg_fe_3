@@ -74,11 +74,11 @@
       <i class="fas fa-arrow-right text-lg"></i>
     </button>
 </div>
-  <div class="absolute left-30 top-1/2 md:top-20 md:left-56 w-full md:w-40 md:h-40 hidden md:block">
+  <div class="absolute left-30 top-1/2 md:top-20 md:left-20 w-full md:w-40 md:h-40 hidden md:block">
     <img src="@/assets/elemen3.png" alt="">
 </div>
 
-  <div class="absolute md:left-1/2  md:-translate-x-1/5 md:-bottom-24 w-full md:w-40 md:h-40 hidden md:block">
+  <div class="absolute md:left-1/2  md:-translate-x-1/5 md:-bottom-28 w-full md:w-40 md:h-40 hidden md:block">
     <img src="@/assets/elemen4.png" alt="">
   </div>
   <div class="absolute top-0 right-24 md:w-40 md:h-40 hidden md:block">

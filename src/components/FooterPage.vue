@@ -18,19 +18,19 @@
         </div>
         <!-- Quick Links -->
         <div>
-          <h4 class="text-xl font-reguler mb-3 text-[#7E7E7E] ml-5">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><router-link to="/" class="hover:text-blue-500 ml-6 ">Home</router-link></li>
-            <li><router-link to="/layananPage" class="hover:text-blue-500 ml-6">Layanan</router-link></li>
-            <li><router-link to="/tentangKami" class="hover:text-blue-500 ml-6">Tentang Kami</router-link></li>
-            <li><router-link to="/hubungiKami" class="hover:text-blue-500 ml-6">Hubungi Kami</router-link></li>
+          <h4 class="text-xl font-reguler mb-2 text-[#7E7E7E] ml-0">Quick Links</h4>
+          <ul class="space-y-1">
+            <li><router-link to="/" class="hover:text-blue-500 ml-1 ">Home</router-link></li>
+            <li><router-link to="/layananPage" class="hover:text-blue-500 ml-1">Layanan</router-link></li>
+            <li><router-link to="/tentangKami" class="hover:text-blue-500 ml-1">Tentang Kami</router-link></li>
+            <li><router-link to="/hubungiKami" class="hover:text-blue-500 ml-1">Hubungi Kami</router-link></li>
           </ul>
         </div>
   
         <!-- Layanan Kami -->
         <div>
-          <h4 class="text-xl font-regular mb-3 text-[#7E7E7E]">Layanan Kami</h4>
-          <ul class="space-y-2">
+          <h4 class="text-xl font-regular mb-2 text-[#7E7E7E]">Layanan Kami</h4>
+          <ul class="space-y-1">
             <li>Senyaman Living</li>
             <li>Senyaman House</li>
             <li>Senyaman Ride</li>
