@@ -18,19 +18,29 @@
         <a href="#promo" class="text-gray-200 hover:text-[#00B1D6] text-lg">Promo</a>
       </div>
 
-      <!-- Tombol Menu Mobile -->
-      <button class="lg:hidden text-3xl text-gray-200 focus:outline-none" @click="menuOpen = !menuOpen">
-        <i class="fas fa-bars" v-if="!menuOpen"></i>
-        <i class="fas fa-times" v-else></i>
+      <!-- Tombol Menu Mobile (di kanan atas) -->
+      <button class="lg:hidden text-3xl text-gray-200 focus:outline-none ml-auto" @click="menuOpen = true">
+        <i class="fas fa-bars"></i>
       </button>
     </div>
 
-    <!-- Menu Mobile -->
-    <div v-if="menuOpen" class="lg:hidden flex flex-col bg-gray-800 bg-opacity-80 backdrop-blur-md p-6 space-y-3 absolute top-full left-0 right-0">
-      <a href="#HorizontalSlides" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Beranda</a>
-      <a href="#keunggulan" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Keunggulan</a>
-      <a href="#carakerja" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Cara Kerja</a>
-      <a href="#promo" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Promo</a>
+    <!-- Menu Mobile (Full height di kanan) -->
+    <div
+      class="fixed top-0 right-0 h-screen w-64 bg-gray-900 bg-opacity-95 backdrop-blur-lg shadow-lg transform transition-transform duration-300"
+      :class="menuOpen ? 'translate-x-0' : 'translate-x-full'"
+    >
+      <!-- Tombol Close -->
+      <button class="absolute top-4 right-4 text-3xl text-white" @click="menuOpen = false">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <!-- Menu Links -->
+      <div class="flex flex-col items-end mt-16 space-y-6 pr-6">
+        <a href="#HorizontalSlides" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Beranda</a>
+        <a href="#keunggulan" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Keunggulan</a>
+        <a href="#carakerja" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Cara Kerja</a>
+        <a href="#promo" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Promo</a>
+      </div>
     </div>
   </nav>
 </template>
@@ -40,21 +50,3 @@ import { ref } from 'vue';
 
 const menuOpen = ref(false);
 </script>
-
-<style>
-/* scroll smooth */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Hilangkan scrollbar horizontal */
-#home::-webkit-scrollbar {
-  display: none;
-}
-
-/* Tambahkan dukungan untuk browser lain */
-#home {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-</style>

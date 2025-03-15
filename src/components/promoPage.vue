@@ -1,6 +1,6 @@
 <template>
   <section id="promo" class="w-full h-auto mt-10 flex flex-col items-center justify-center text-center bg-[#E3F6FC]">
-    <div class="grid grid-cols-1 md:grid-cols-2 w-full h-full">
+    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-center justify-center w-full h-full">
       <div class="w-full">
         <img :src="promoImage" alt="Promo" class="w-full h-auto object-cover shadow-lg" />
       </div>
@@ -44,9 +44,8 @@
     </div>
  </section>
 
-<!-- okee ini udanselesao tinggal besok lanjut backend nya, ini mau rapihin dulu yang posisinya kurang pas  -->
   <!-- Review Section -->
-  <div class="py-20 px-4 md:px-10 bg-white mx-auto">
+  <div class="py-20 px-4 lg:px-10 bg-white mx-auto">
     <!-- Header Section -->
     <div class="text-left mb-6">
       <h2 class="text-4xl font-normal">
@@ -56,36 +55,35 @@
     </div>
 
     <!-- Grid Testimonial -->
-    <div class="relative mt-6 overflow-hidden flex justify-center md:justify-end md:mb-5 pr-2 pl-2">
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 place-items-start w-full md:w-auto transition-transform duration-300 ease-in-out">
+    <div class="relative mt-6 overflow-hidden flex md:flex justify-center md:justify-center lg:justify-end lg:mb-5 pr-2 pl-2 ">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center w-full transition-transform duration-300 ease-in-out">
 
-
-    <div class="flex justify-center md:justify-start items-center gap-3 mt-5">
+    <div class="flex justify-start items-start gap-3 mt-0 ">
     <button 
       @click="prevPage" 
       :disabled="currentPage === 1"
-      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+      class="w-10 h-10 lg:flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40 md:hidden hidden ">
       <i class="fas fa-arrow-left text-lg"></i>
     </button>
     <button 
       @click="nextPage" 
       :disabled="currentPage === totalPages" 
-      class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40">
+      class="w-10 h-10 lg:flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40 md:hidden hidden">
       <i class="fas fa-arrow-right text-lg"></i>
     </button>
 </div>
-  <div class="absolute left-30 top-1/2 md:top-20 md:left-20 w-full md:w-40 md:h-40 hidden md:block">
+
+  <div class="absolute left-30 top-1/2 lg:top-20 lg:left-20 w-full lg:w-40 lg:h-40 hidden lg:block">
     <img src="@/assets/elemen3.png" alt="">
 </div>
 
-  <div class="absolute md:left-1/2  md:-translate-x-1/5 md:-bottom-28 w-full md:w-40 md:h-40 hidden md:block">
+  <div class="absolute lg:left-1/2  lg:-translate-x-1/5 lg:-bottom-28 w-full lg:w-40 lg:h-40 hidden lg:block">
     <img src="@/assets/elemen4.png" alt="">
   </div>
-  <div class="absolute top-0 right-24 md:w-40 md:h-40 hidden md:block">
+  <div class="absolute top-0 right-24 lg:w-40 lg:h-40 hidden lg:block">
     <img src="@/assets/elemen5.png" alt="">
   </div>
 
- 
     <div v-for="(testimonial, index) in paginatedTestimonials" :key="index"
       class="bg-white rounded-lg p-6 border-2 border-gray-100 flex shadow-lg shadow-[#00B1D6]/30 flex-col justify-between"
       :class="gridClasses(index)">
@@ -104,12 +102,28 @@
     </div>
   </div>
 </div>
-  </div>
+ <!-- MOBILE DAN IPAD -->
+  <div class="flex justify-center items-center gap-3 mt-8 lg:hidden">
+      <button 
+        @click="prevPage" 
+        :disabled="currentPage === 1"
+        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        <i class="fas fa-arrow-left text-lg"></i>
+      </button>
+      <button 
+        @click="nextPage" 
+        :disabled="currentPage === totalPages" 
+        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        <i class="fas fa-arrow-right text-lg"></i>
+      </button>
+    </div>
+</div>
+
 
 <!-- KATALOG -->
 <section class="relative mt-10">
   <!-- Elemen di atas kiri katalog -->
-  <div class="absolute  -top-40 md:-top-80 left-0 z-10 w-40 md:w-80 h-auto">
+  <div class="absolute  -top-40 lg:-top-80 left-0 z-0 w-40 lg:w-80 h-auto">
     <img src="@/assets/elemen.png" alt="Elemen Dekoratif">
   </div>
 
@@ -154,9 +168,9 @@ export default {
         seconds: { value: "07", label: "sec" }
       },
       currentPage: 1,
-      itemsPerPage: 2,
+      itemsPerPage: 1,
       testimonialsPerPage: 4,
-      isMobile: window.innerWidth < 768, // Menyimpan status mobile
+      isMobile: window.innerWidth < 768, 
       testimonials: [
         {
           profileImage: require('@/assets/profile1.png'),
@@ -266,10 +280,10 @@ export default {
       return "-mt-11";
     }
   } else if (this.windowWidth >= 768) {
-    // Tablet: Sedikit bergelombang
-    return index % 2 === 1 ? "mt-4" : "mt-0";
+    // Tablet
+    return  "mt-1";
   }
-  // Mobile: Grid harus sejajar dan sama besar
+  // Mobile: 
   return "mt-1"; 
 }
 
@@ -277,7 +291,7 @@ export default {
   mounted() {
     window.addEventListener("resize", () => {
       this.windowWidth = window.innerWidth;
-      this.testimonialsPerPage = this.windowWidth < 768 ? 1 : 4;
+      this.testimonialsPerPage = this.windowWidth < 768 ? 1 : 1;
     });
   },
   beforeUnmount() {
