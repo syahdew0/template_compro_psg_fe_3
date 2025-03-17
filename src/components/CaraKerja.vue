@@ -36,7 +36,7 @@
 
       <!-- Deskripsi -->
       <h3 class="font-medium text-gray-700 mt-2">{{ step.title }}</h3>
-      <p class="text-sm mt-2 text-gray-600 max-w-xs">{{ step.description }}</p>
+      <p class="text-sm mt-2 text-gray-600 max-w-xs ">{{ step.description }}</p>
     </div>
   </div>
 </div>

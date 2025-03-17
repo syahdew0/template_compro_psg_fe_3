@@ -45,47 +45,44 @@
  </section>
 
   <!-- Review Section -->
-  <div class="py-20 px-4 lg:px-10 bg-white mx-auto">
+  <div class="py-24 px-4 lg:px-10 bg-white mx-auto">
     <!-- Header Section -->
-    <div class="text-left mb-6">
       <h2 class="text-4xl font-normal">
         Apa <span class="text-[#00B1D6]">kata</span> mereka <span class="text-[#00B1D6]">tentang</span> kami?
       </h2>
       <p class="text-gray-800 font-normal text-sm mt-4">Yuk, dengar pengalaman seru dari pengguna setia kami!</p>
+   
+    <div class=" lg:flex justify-start items-center gap-3 mt-8 md:hidden hidden">
+      <button 
+        @click="prevPage" 
+        :disabled="currentPage === 1"
+        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        <i class="fas fa-arrow-left text-lg"></i>
+      </button>
+      <button 
+        @click="nextPage" 
+        :disabled="currentPage === totalPages" 
+        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        <i class="fas fa-arrow-right text-lg"></i>
+      </button>
     </div>
 
     <!-- Grid Testimonial -->
-    <div class="relative mt-6 overflow-hidden flex md:flex justify-center md:justify-center lg:justify-end lg:mb-5 pr-2 pl-2 ">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center w-full transition-transform duration-300 ease-in-out">
-
-    <div class="flex justify-start items-start gap-3 mt-0 ">
-    <button 
-      @click="prevPage" 
-      :disabled="currentPage === 1"
-      class="w-10 h-10 lg:flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40 md:hidden hidden ">
-      <i class="fas fa-arrow-left text-lg"></i>
-    </button>
-    <button 
-      @click="nextPage" 
-      :disabled="currentPage === totalPages" 
-      class="w-10 h-10 lg:flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-40 md:hidden hidden">
-      <i class="fas fa-arrow-right text-lg"></i>
-    </button>
-</div>
-
-  <div class="absolute left-30 top-1/2 lg:top-20 lg:left-20 w-full lg:w-40 lg:h-40 hidden lg:block">
+    <div class="relative mt-6 overflow-hidden flex md:flex justify-center md:justify-center lg:justify-end lg:mb-5 pr-2 pl-4 z-40 ">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 rtl text-right gap-4 place-items-center w-full transition-transform duration-300 ease-in-out">
+  <div class="absolute lg:top-1/4 lg:left-1/4 -translate-x-1/3  w-full lg:w-40 lg:h-40 hidden lg:block">
     <img src="@/assets/elemen3.png" alt="">
 </div>
 
-  <div class="absolute lg:left-1/2  lg:-translate-x-1/5 lg:-bottom-28 w-full lg:w-40 lg:h-40 hidden lg:block">
+  <div class="absolute lg:left-1/2  lg:-translate-x-1/5 lg:-bottom-32 w-full lg:w-40 lg:h-40 hidden lg:block">
     <img src="@/assets/elemen4.png" alt="">
   </div>
-  <div class="absolute top-0 right-24 lg:w-40 lg:h-40 hidden lg:block">
+  <div class="absolute top-0 right-32 -translate-x-3/4 lg:w-40 lg:h-40 hidden lg:block">
     <img src="@/assets/elemen5.png" alt="">
   </div>
 
     <div v-for="(testimonial, index) in paginatedTestimonials" :key="index"
-      class="bg-white rounded-lg p-6 border-2 border-gray-100 flex shadow-lg shadow-[#00B1D6]/30 flex-col justify-between"
+      class="bg-white rounded-lg p-6 border-2 border-gray-100 flex shadow-lg shadow-[#00B1D6]/30 flex-col justify-end"
       :class="gridClasses(index)">
       <div class="flex items-center mb-4">
         <i class="fas fa-quote-left text-[#00B1D6]"></i>
@@ -101,9 +98,10 @@
       </div>
     </div>
   </div>
-</div>
- <!-- MOBILE DAN IPAD -->
-  <div class="flex justify-center items-center gap-3 mt-8 lg:hidden">
+
+
+<!-- MOBILE DAN IPAD -->
+<div class=" flex justify-center items-center gap-3 mt-8 lg:hidden">
       <button 
         @click="prevPage" 
         :disabled="currentPage === 1"
@@ -117,13 +115,13 @@
         <i class="fas fa-arrow-right text-lg"></i>
       </button>
     </div>
+  </div>
 </div>
 
-
 <!-- KATALOG -->
-<section class="relative mt-10">
+<section class="relative mt-0">
   <!-- Elemen di atas kiri katalog -->
-  <div class="absolute  -top-40 lg:-top-80 left-0 z-0 w-40 lg:w-80 h-auto">
+  <div class="absolute lg:-top-80 left-0 z-0 lg:w-80  md:h-80 md:w-auto md:-top-80 h-50 w-auto -top-80 ">
     <img src="@/assets/elemen.png" alt="Elemen Dekoratif">
   </div>
 
@@ -155,95 +153,110 @@
 
 <script>
 export default {
-  name: 'PromoPage',
+  name: "PromoPage",
   data() {
     return {
-      windowWidth: window.innerWidth, // Menyimpan ukuran layar
-      promoImage: require('@/assets/promo.png'),
+      windowWidth: window.innerWidth,
+      promoImage: require("@/assets/promo.png"),
       promoCode: "LIVING15",
       countdown: {
         days: { value: "07", label: "days" },
         hours: { value: "12", label: "hours" },
         minutes: { value: "25", label: "min" },
-        seconds: { value: "07", label: "sec" }
+        seconds: { value: "07", label: "sec" },
       },
       currentPage: 1,
       itemsPerPage: 1,
       testimonialsPerPage: 4,
-      isMobile: window.innerWidth < 768, 
+      isMobile: window.innerWidth < 768,
       testimonials: [
         {
-          profileImage: require('@/assets/profile1.png'),
+          profileImage: require("@/assets/profile1.png"),
           name: "Melba Smith",
           text: "Pakai Senyaman Living beneran bikin hemat waktu! Proses booking cepat dan Smart Doorloknya keren banget, ga perlu repot cari kunci!😆",
-          rating: 5
+          rating: 5,
         },
         {
-          profileImage: require('@/assets/profile2.png'),
+          profileImage: require("@/assets/profile2.png"),
           name: "Jonathan Berge",
           text: "Websitenya simpel dan lengkap! Bisa cari hunian sesuai kebutuhan, harga transparan, dan prosesnya super mudah 👍",
-          rating: 5
+          rating: 5,
         },
         {
-          profileImage: require('@/assets/profile3.png'),
+          profileImage: require("@/assets/profile3.png"),
           name: "Maurice Windler",
           text: "Dulu cari kost yang nyaman susah banget, sekarang tinggal buka Cloudhomes, pilih, dan selesai! Beneran praktis banget.",
-          rating: 5
+          rating: 5,
         },
         {
-          profileImage: require('@/assets/profile4.png'),
+          profileImage: require("@/assets/profile4.png"),
           name: "Mindy Larson",
           text: "Suka banget sama sistem check-in nya! Begitu sampai, langsung masuk pakai kode Smart Doorlock. Gak ribet sama sekali!🤩",
-          rating: 5
+          rating: 5,
         },
         {
-          profileImage: require('@/assets/profile5.png'),
+          profileImage: require("@/assets/profile5.png"),
           name: "Russel Weiman",
           text: "Sistem nya canggih, ga perlu ketemu pemilik atau tuker kunci. Smart Doorlock nya beneran bikin check-in jadi mudah banget!!😍",
-          rating: 5
+          rating: 5,
         },
         {
-          profileImage: require('@/assets/profile6.png'),
+          profileImage: require("@/assets/profile6.png"),
           name: "Eunice Schumm",
           text: "Dulu cari kost yang nyaman susah banget, sekarang tinggal buka Cloudhomes, pilih, dan selesai! Beneran praktis banget.",
-          rating: 5
+          rating: 5,
         },
         {
-          profileImage: require('@/assets/profile7.png'),
+          profileImage: require("@/assets/profile7.png"),
           name: "Delia Ebert",
           text: "Suka sama pilihan huniannya! Banyak opsi dengan fasilitas lengkap, dan harganya juga masuk akal. Pasti pakai lagi! 🙌🏻",
-          rating: 5
+          rating: 5,
         },
-      ]
+      ],
     };
   },
   computed: {
-   
     totalPages() {
       return Math.ceil(this.testimonials.length / this.itemsPerPage);
     },
     paginatedTestimonials() {
-      return this.isMobile
-        ? this.testimonials.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage)
-        : this.testimonials;
-    },
+  if (this.windowWidth >= 1024) {
+    return this.testimonials; // Desktop tetap menampilkan semua testimonial
+  } 
+
+  let startIndex = (this.currentPage - 1) * this.itemsPerPage;
+ 
+
+  if (this.windowWidth >= 768) { 
+    return this.testimonials.slice(startIndex, startIndex + 2); // iPad Mini: 2 per halaman
+  } else { 
+    return this.testimonials.slice(startIndex, startIndex + 1); // Mobile: 1 per halaman
+  }
+},
     gridStyle() {
       return {
-        transform: `translateX(-${(this.currentPage - 6) * 100}%)`
+        transform: `translateX(-${(this.currentPage - 1) * 100}%)`,
       };
-    }
+    },
   },
   watch: {
     windowWidth(newWidth) {
       this.currentPage = 1;
       this.isMobile = newWidth < 768;
-    }
+    },
   },
   methods: {
     updateWindowSize() {
-      this.windowWidth = window.innerWidth;
-      
-    },
+    this.windowWidth = window.innerWidth;
+
+    if (this.windowWidth >= 1024) {
+      this.itemsPerPage = this.testimonials.length; // Desktop: Tampilkan semua
+    } else if (this.windowWidth >= 768) {
+      this.itemsPerPage = 2; // iPad Mini: 2 per halaman
+    } else {
+      this.itemsPerPage = 1; // Mobile: 1 per halaman
+    }
+  },
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
@@ -259,43 +272,24 @@ export default {
       alert("Kode promo disalin: " + this.promoCode);
     },
     gridClasses(index) {
-  if (this.windowWidth >= 1024) {
-    // Efek bergelombang untuk desktop
-    if (index % 6 === 0) {
-      return "mt-8";
-    }
-    if (index % 6 === 1) {
+      if (this.windowWidth >= 1024) {
+        if (index % 6 === 0) return "-mt-4";
+        if (index % 6 === 3) return "mt-6";
+        if (index % 6 === 2) return "mt-24";
+        if (index % 6 === 3) return "mt-24";
+        if (index % 6 === 3) return "mt-2";
+        if (index % 6 === 4) return "-mt-8";
+      } else if (this.windowWidth >= 768) {
+        return "mt-1";
+      }
       return "mt-1";
-    }
-    if (index % 6 === 2) {
-      return "mt-10";
-    }
-    if (index % 6 === 3) {
-      return "-mt-44";
-    }
-    if (index % 6 === 4) {
-      return "mt-2";
-    }
-    if (index % 6 === 5) {
-      return "-mt-11";
-    }
-  } else if (this.windowWidth >= 768) {
-    // Tablet
-    return  "mt-1";
-  }
-  // Mobile: 
-  return "mt-1"; 
-}
-
+    },
   },
   mounted() {
-    window.addEventListener("resize", () => {
-      this.windowWidth = window.innerWidth;
-      this.testimonialsPerPage = this.windowWidth < 768 ? 1 : 1;
-    });
+    window.addEventListener("resize", this.updateWindowSize);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.updateWindowSize);
-  }
+  },
 };
 </script>
