@@ -45,44 +45,48 @@
  </section>
 
   <!-- Review Section -->
-  <div class="py-24 px-4 lg:px-10 bg-white mx-auto">
+  <div class="py-20 px-4 lg:px-10 bg-white mx-auto">
     <!-- Header Section -->
-      <h2 class="text-4xl font-normal">
+      <h2 class="text-4xl font-semibold">
         Apa <span class="text-[#00B1D6]">kata</span> mereka <span class="text-[#00B1D6]">tentang</span> kami?
       </h2>
       <p class="text-gray-800 font-normal text-sm mt-4">Yuk, dengar pengalaman seru dari pengguna setia kami!</p>
-   
-    <div class=" lg:flex justify-start items-center gap-3 mt-8 md:hidden hidden">
+    <!-- Navigasi (Ditampilkan hanya di Desktop) -->
+    <div class="hidden lg:flex justify-start items-start gap-3 mt-10">
       <button 
         @click="prevPage" 
         :disabled="currentPage === 1"
-        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        class="w-10 h-10 flex items-center justify-center text-gray-500 border border-gray-500 rounded-md 
+               hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors 
+               disabled:opacity-50 disabled:cursor-not-allowed">
         <i class="fas fa-arrow-left text-lg"></i>
       </button>
       <button 
         @click="nextPage" 
         :disabled="currentPage === totalPages" 
-        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        class="w-10 h-10 flex items-center justify-center text-gray-500 border border-gray-500 rounded-md 
+               hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors 
+               disabled:opacity-50 disabled:cursor-not-allowed">
         <i class="fas fa-arrow-right text-lg"></i>
       </button>
     </div>
+ <!-- Grid Testimonial -->
+<div class="relative mt-0 flex lg:justify-end lg:items-end lg:mb-0 px-4 z-40">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center w-4/5 transition-transform duration-300 ease-in-out">
 
-    <!-- Grid Testimonial -->
-    <div class="relative mt-6 overflow-hidden flex md:flex justify-center md:justify-center lg:justify-end lg:mb-5 pr-2 pl-4 z-40 ">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 rtl text-right gap-4 place-items-center w-full transition-transform duration-300 ease-in-out">
-  <div class="absolute lg:top-1/4 lg:left-1/4 -translate-x-1/3  w-full lg:w-40 lg:h-40 hidden lg:block">
-    <img src="@/assets/elemen3.png" alt="">
-</div>
-
-  <div class="absolute lg:left-1/2  lg:-translate-x-1/5 lg:-bottom-32 w-full lg:w-40 lg:h-40 hidden lg:block">
-    <img src="@/assets/elemen4.png" alt="">
-  </div>
-  <div class="absolute top-0 right-32 -translate-x-3/4 lg:w-40 lg:h-40 hidden lg:block">
-    <img src="@/assets/elemen5.png" alt="">
-  </div>
-
+    <!-- Elemen Dekoratif -->
+<div class="absolute lg:top-1 lg:left-1/4 transform -translate-x-1/3 w-40 h-40 hidden lg:block">
+      <img src="@/assets/elemen3.png" alt="Elemen dekoratif">
+    </div>
+    <div class="absolute lg:right-20 lg:bottom-6 lg:-translate-x-1/2 w-40 h-40 hidden lg:block">
+      <img src="@/assets/elemen4.png" alt="Elemen dekoratif">
+    </div>
+    <div class="absolute top-0 lg:right-1/3 transform -translate-x-1/4 lg:top-20  w-40 h-40 hidden lg:block">
+      <img src="@/assets/elemen5.png" alt="Elemen dekoratif">
+    </div>
+    <!-- Testimonial Cards -->
     <div v-for="(testimonial, index) in paginatedTestimonials" :key="index"
-      class="bg-white rounded-lg p-6 border-2 border-gray-100 flex shadow-lg shadow-[#00B1D6]/30 flex-col justify-end"
+      class="bg-white rounded-lg p-6 border-2 border-gray-100 shadow-lg shadow-[#00B1D6]/30 flex flex-col justify-start"
       :class="gridClasses(index)">
       <div class="flex items-center mb-4">
         <i class="fas fa-quote-left text-[#00B1D6]"></i>
@@ -98,30 +102,32 @@
       </div>
     </div>
   </div>
-
-
-<!-- MOBILE DAN IPAD -->
-<div class=" flex justify-center items-center gap-3 mt-8 lg:hidden">
-      <button 
-        @click="prevPage" 
-        :disabled="currentPage === 1"
-        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-        <i class="fas fa-arrow-left text-lg"></i>
-      </button>
-      <button 
-        @click="nextPage" 
-        :disabled="currentPage === totalPages" 
-        class="w-10 h-10 flex items-center justify-center text-gray-400 border border-gray-300 rounded-md hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-        <i class="fas fa-arrow-right text-lg"></i>
-      </button>
-    </div>
-  </div>
 </div>
 
+<!-- Navigasi (Hanya untuk Mobile & iPad) -->
+<div class="flex justify-center items-center gap-3 mt-8 lg:hidden z-40">
+  <button 
+    @click="prevPage" 
+    :disabled="currentPage === 1"
+    class="w-10 h-10 flex items-center justify-center text-gray-500 border border-gray-500 rounded-md 
+           hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors 
+           disabled:opacity-50 disabled:cursor-not-allowed">
+    <i class="fas fa-arrow-left text-lg"></i>
+  </button>
+  <button 
+    @click="nextPage" 
+    :disabled="currentPage === totalPages" 
+    class="w-10 h-10 flex items-center justify-center text-gray-500 border border-gray-500 rounded-md 
+           hover:text-[#00B1D6] hover:border-[#00B1D6] transition-colors 
+           disabled:opacity-50 disabled:cursor-not-allowed">
+    <i class="fas fa-arrow-right text-lg"></i>
+  </button>
+</div>
+</div>
 <!-- KATALOG -->
 <section class="relative mt-0">
   <!-- Elemen di atas kiri katalog -->
-  <div class="absolute lg:-top-80 left-0 z-0 lg:w-80  md:h-80 md:w-auto md:-top-80 h-50 w-auto -top-80 ">
+  <div class="absolute lg:-top-80 left-0 z-0 lg:w-80  md:h-80 md:w-auto md:-top-60 h-50 w-60 -top-40 lg:z-0 ">
     <img src="@/assets/elemen.png" alt="Elemen Dekoratif">
   </div>
 
@@ -228,9 +234,9 @@ export default {
  
 
   if (this.windowWidth >= 768) { 
-    return this.testimonials.slice(startIndex, startIndex + 2); // iPad Mini: 2 per halaman
+    return this.testimonials.slice(startIndex, startIndex + 2); // iPad Mini
   } else { 
-    return this.testimonials.slice(startIndex, startIndex + 1); // Mobile: 1 per halaman
+    return this.testimonials.slice(startIndex, startIndex + 1); // Mobile:
   }
 },
     gridStyle() {
@@ -273,12 +279,12 @@ export default {
     },
     gridClasses(index) {
       if (this.windowWidth >= 1024) {
-        if (index % 6 === 0) return "-mt-4";
-        if (index % 6 === 3) return "mt-6";
-        if (index % 6 === 2) return "mt-24";
-        if (index % 6 === 3) return "mt-24";
-        if (index % 6 === 3) return "mt-2";
-        if (index % 6 === 4) return "-mt-8";
+        if (index % 6 === 0) return "-mt-24";
+    if (index % 6 === 1) return "mt-8";
+    if (index % 6 === 2) return "-mt-2";
+    if (index % 6 === 3) return "mt-44";
+    if (index % 6 === 4) return "-mt-36";
+    if (index % 6 === 5) return "-mt-20";
       } else if (this.windowWidth >= 768) {
         return "mt-1";
       }
