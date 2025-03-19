@@ -72,16 +72,16 @@
     </div>
  <!-- Grid Testimonial -->
 <div class="relative mt-0 flex lg:justify-end lg:items-end lg:mb-0 px-4 z-40">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center w-4/5 transition-transform duration-300 ease-in-out">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center lg:w-4/5 mb-2 transition-transform duration-300 ease-in-out">
 
     <!-- Elemen Dekoratif -->
-<div class="absolute lg:top-1 lg:left-1/4 transform -translate-x-1/3 w-40 h-40 hidden lg:block">
+<div class="absolute lg:-top-16 lg:left-38 transform -translate-x-3/4 w-40 h-40 hidden lg:block z-40">
       <img src="@/assets/elemen3.png" alt="Elemen dekoratif">
     </div>
-    <div class="absolute lg:right-20 lg:bottom-6 lg:-translate-x-1/2 w-40 h-40 hidden lg:block">
+    <div class="absolute lg:right-20 lg:bottom-6 lg:-translate-x-1/2 w-40 h-40 hidden lg:block z-40">
       <img src="@/assets/elemen4.png" alt="Elemen dekoratif">
     </div>
-    <div class="absolute top-0 lg:right-1/3 transform -translate-x-1/4 lg:top-20  w-40 h-40 hidden lg:block">
+    <div class="absolute top-0 lg:right-36 transform translate-x-1/5 lg:-top-8  w-40 h-40 hidden lg:block z-40">
       <img src="@/assets/elemen5.png" alt="Elemen dekoratif">
     </div>
     <!-- Testimonial Cards -->
@@ -277,19 +277,23 @@ export default {
       navigator.clipboard.writeText(this.promoCode);
       alert("Kode promo disalin: " + this.promoCode);
     },
-    gridClasses(index) {
-      if (this.windowWidth >= 1024) {
-        if (index % 6 === 0) return "-mt-24";
-    if (index % 6 === 1) return "mt-8";
-    if (index % 6 === 2) return "-mt-2";
-    if (index % 6 === 3) return "mt-44";
-    if (index % 6 === 4) return "-mt-36";
-    if (index % 6 === 5) return "-mt-20";
-      } else if (this.windowWidth >= 768) {
-        return "mt-1";
-      }
-      return "mt-1";
-    },
+    gridClasses(index, totalItems) {
+    if (this.windowWidth >= 1024) {
+    if (index % 7 === 0) return "-mt-16";
+    if (index % 7 === 1) return "-mt-36";
+    if (index % 7 === 2) return "-mt-24";
+    if (index % 7 === 3) return "mt-26";
+    if (index % 7 === 4) return "-mt-10";
+    if (index % 7 === 5) return "-mt-28";
+    if (index % 7 === 6) return "-mt-10";
+
+    // Tambahkan margin kiri untuk 3 elemen terakhir
+    if (index >= totalItems - 3) return "-ml-10";
+  } else if (this.windowWidth >= 768) {
+    return "mt-4";
+  }
+  return "mt-1";
+}
   },
   mounted() {
     window.addEventListener("resize", this.updateWindowSize);
