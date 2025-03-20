@@ -283,7 +283,7 @@ export default {
     if (index % 7 === 1) return "-mt-36";
     if (index % 7 === 2) return "-mt-24";
     if (index % 7 === 3) return "mt-26";
-    if (index % 7 === 4) return "-mt-10";
+    if (index % 7 === 4) return "-mt-8";
     if (index % 7 === 5) return "-mt-28";
     if (index % 7 === 6) return "-mt-10";
 
