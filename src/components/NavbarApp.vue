@@ -27,8 +27,7 @@
     <!-- Menu Mobile (Full height di kanan) -->
     <div
       class="fixed top-0 right-0 h-screen w-64 bg-gray-900 bg-opacity-95 backdrop-blur-lg shadow-lg transform transition-transform duration-300"
-      :class="menuOpen ? 'translate-x-0' : 'translate-x-full'"
-    >
+      :class="menuOpen ? 'translate-x-0' : 'translate-x-full'">
       <!-- Tombol Close -->
       <button class="absolute top-4 right-4 text-3xl text-white" @click="menuOpen = false">
         <i class="fas fa-times"></i>

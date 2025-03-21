@@ -65,7 +65,7 @@
 <div class="relative w-full max-w-7xl bg-white p-0 flex flex-col lg:flex-row items-center mt-10">
   <!-- Kotak biru panjanggg -->
   <div class=" bg-[#00B1D6] text-white  w-max-4xl px-2 lg:px-8 py-10 lg:py-12 w-full lg:w-1/2 relative lg:absolute lg:-right-9 flex flex-col items-end lg:justify-end">
-    <h2 class="relative text-2xl md:text-5xl lg:text-3xl text-center lg:text-right font-normal z-20">Kenapa memilih kami?</h2>
+    <h2 class="relative text-2xl md:text-6xl lg:text-3xl text-center lg:text-right font-normal z-20">Kenapa memilih kami?</h2>
     <div class="absolute -bottom-50 w-80 h-auto right-0 md:hidden">
       <img src="@/assets/elemen2 copy.png" alt="">
     </div>

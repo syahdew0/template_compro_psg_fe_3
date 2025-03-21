@@ -127,7 +127,7 @@
 <!-- KATALOG -->
 <section class="relative mt-0">
   <!-- Elemen di atas kiri katalog -->
-  <div class="absolute lg:-top-80 left-0 z-0 lg:w-80  md:h-80 md:w-auto md:-top-60 h-50 w-60 -top-40 lg:z-0 ">
+  <div class="absolute lg:-top-80 left-0 z-0 lg:w-80  md:h-60 md:w-60 md:-top-60 h-50 w-40 -top-40 lg:z-0 ">
     <img src="@/assets/elemen.png" alt="Elemen Dekoratif">
   </div>
 

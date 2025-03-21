@@ -8,7 +8,7 @@
       <h1 class="text-3xl md:text-5xl font-bold my-4 leading-tight">Sewa Hunian dengan Mudah di Cloudhomes</h1>
       <p class="text-sm md:text-lg">Booking cepat, proses mudah, hunian nyaman sesuai kebutuhanmu!</p>
 
-      <div class="flex flex-col sm:flex-row gap-5 p-6">
+      <div class="flex flex-col sm:flex-row gap-5 p-6 ">
         <button class="w-full sm:w-auto px-5 py-2 text-base font-reguler rounded-full bg-[#00B1D6] text-white border-2 border-[#00B1D6] transition-all duration-300 hover:bg-white hover:text-[#00B1D6]">
           Cari Hunian Sekarang
         </button>
