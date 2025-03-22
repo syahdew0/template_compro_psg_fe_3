@@ -1,6 +1,6 @@
 <template>
-<section id="keunggulan" class="w-screen h-auto flex flex-col items-center justify-center text-center px-1 md:px-8 lg:px-5 pt-20 md:pt-22">
-  <div class="relative z-10 flex flex-col md:flex-col lg:flex-row space-y-6 md:space-y-10 lg:space-y-0 lg:space-x-6 p-6 bg-white backdrop-blur-lg w-full">
+<section id="keunggulan" class="w-screen h-auto flex flex-col items-centerjustify-center text-center px-1 md:px-8 lg:px-5 pt-20 md:pt-22">
+  <div class="relative z-10 flex flex-col md:flex-col lg:flex-row space-y-6 md:space-y-10 lg:space-y-0 lg:space-x-10 p-6 bg-white backdrop-blur-lg w-full">
     
     <!-- Thumbnail Image List -->
     <div class="flex flex-row md:flex-row lg:grid lg:grid-cols-1 items-start gap-x-2 lg:gap-y-2 overflow-x-auto md:overflow-auto lg:overflow-visible">
