@@ -6,8 +6,8 @@
     </p>
 
     <!-- Container Grid -->
-    <div class="mt-12 flex flex-col md:flex-row lg:ml-20 lg:mr-20 items-center w-auto">
-  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-24 w-full relative">
+    <div class="mt-12 flex flex-col md:flex-row xl:ml-20 xl:mr-20 items-center w-auto">
+  <div class="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-4 gap-24 w-full relative">
     <div v-for="(step, index) in steps" :key="index" class="flex flex-col items-center relative">
       
       <!-- Icon Box -->
@@ -18,7 +18,7 @@
       <!-- Garis Penghubung untuk Desktop -->
       <div 
         v-if="index !== steps.length - 1"
-        class="hidden lg:block absolute top-7 -right-20 w-24 
+        class="hidden xl:block absolute top-7 -right-20 w-24 
         border-t-2 border-dashed border-[#00B1D6] before:absolute before:-left-4 before:-top-2 before:w-3 before:h-3 before:bg-white before:border-2 before:border-[#00B1D6] before:rounded-full 
         after:absolute after:-right-4 after:-top-2 after:w-3 after:h-3 after:bg-white after:border-2 after:border-[#00B1D6] after:rounded-full">
       </div>
@@ -26,7 +26,7 @@
       <!-- Garis Penghubung untuk Mobile -->
       <div 
         v-if="index !== steps.length - 1"
-        class="lg:hidden w-1 h-12 border-l-2 border-dashed border-[#00B1D6] absolute -bottom-20 left-1/2 transform -translate-x-1/2 
+        class="xl:hidden w-1 h-12 border-l-2 border-dashed border-[#00B1D6] absolute -bottom-20 left-1/2 transform -translate-x-1/2 
         before:absolute before:-top-5 before:-left-2 before:w-4 before:h-4 before:bg-white before:border-2 before:border-[#00B1D6] before:rounded-full 
         after:absolute after:-bottom-3 after:-left-2 after:w-4 after:h-4 after:bg-white after:border-2 after:border-[#00B1D6] after:rounded-full">
       </div>

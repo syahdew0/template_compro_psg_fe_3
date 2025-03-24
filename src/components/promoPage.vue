@@ -1,6 +1,6 @@
 <template>
   <section id="promo" class="w-full h-auto mt-10 flex flex-col items-center justify-center text-center bg-[#E3F6FC]">
-    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-center justify-center w-full h-full">
+    <div class="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2 items-center justify-center w-full h-full">
       <div class="w-full">
         <img :src="promoImage" alt="Promo" class="w-full h-auto object-cover shadow-lg" />
       </div>
@@ -52,7 +52,7 @@
       </h2>
       <p class="text-gray-800 font-normal text-sm mt-4">Yuk, dengar pengalaman seru dari pengguna setia kami!</p>
     <!-- Navigasi (Ditampilkan hanya di Desktop) -->
-    <div class="hidden lg:flex justify-start items-start gap-3 mt-10">
+    <div class="hidden lg:flex xl:pt-0 justify-start items-start gap-3 mt-10 ">
       <button 
         @click="prevPage" 
         :disabled="currentPage === 1"
@@ -71,17 +71,17 @@
       </button>
     </div>
  <!-- Grid Testimonial -->
-<div class="relative mt-0 flex lg:justify-end lg:items-end lg:mb-0 px-4 z-40">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center lg:w-4/5 mb-2 transition-transform duration-300 ease-in-out">
+<div class="relative mt-0 flex xl:justify-end xl:items-end xl:mb-0 px-4 z-40 lg:pt-20">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 place-items-center xl:w-4/5 mb-2 transition-transform duration-300 ease-in-out">
 
     <!-- Elemen Dekoratif -->
-<div class="absolute lg:-top-16 lg:left-38 transform -translate-x-3/4 w-40 h-40 hidden lg:block z-40">
+<div class="absolute lg:-top-16 lg:left-38 transform -translate-x-3/4 w-40 h-40 hidden xl:block z-40">
       <img src="@/assets/elemen3.png" alt="Elemen dekoratif">
     </div>
-    <div class="absolute lg:right-20 lg:bottom-6 lg:-translate-x-1/2 w-40 h-40 hidden lg:block z-40">
+    <div class="absolute xl:right-6 lg:bottom-6 lg:-translate-x-1/2 w-40 h-40 hidden xl:block lg:hidden z-40">
       <img src="@/assets/elemen4.png" alt="Elemen dekoratif">
     </div>
-    <div class="absolute top-0 lg:right-36 transform translate-x-1/5 lg:-top-8  w-40 h-40 hidden lg:block z-40">
+    <div class="absolute top-0 lg:right-36 transform translate-x-1/5 lg:-top-8  w-40 h-40 hidden xl:block z-40">
       <img src="@/assets/elemen5.png" alt="Elemen dekoratif">
     </div>
     <!-- Testimonial Cards -->
@@ -105,7 +105,7 @@
 </div>
 
 <!-- Navigasi (Hanya untuk Mobile & iPad) -->
-<div class="flex justify-center items-center gap-3 mt-8 lg:hidden z-40">
+<div class="flex justify-center items-center gap-3 mt-8 lg:hidden xl:hidden z-40">
   <button 
     @click="prevPage" 
     :disabled="currentPage === 1"

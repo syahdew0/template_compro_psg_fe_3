@@ -1,15 +1,15 @@
 <template>
-<section id="keunggulan" class="w-screen h-auto flex flex-col items-centerjustify-center text-center px-1 md:px-8 lg:px-5 pt-20 md:pt-22">
-  <div class="relative z-10 flex flex-col md:flex-col lg:flex-row space-y-6 md:space-y-10 lg:space-y-0 lg:space-x-10 p-6 bg-white backdrop-blur-lg w-full">
+<section id="keunggulan" class="w-screen h-auto flex flex-col items-centerjustify-center text-center px-1 md:px-8 xl:px-5 pt-20 md:pt-22">
+  <div class="relative z-10 flex flex-col md:flex-col xl:flex-row space-y-6 md:space-y-10 xl:space-y-0 xl:space-x-10 p-6 bg-white backdrop-blur-lg w-full">
     
     <!-- Thumbnail Image List -->
-    <div class="flex flex-row md:flex-row lg:grid lg:grid-cols-1 items-start gap-x-2 lg:gap-y-2 overflow-x-auto md:overflow-auto lg:overflow-visible">
+    <div class="flex flex-row md:flex-row xl:grid xl:grid-cols-1 items-start gap-x-2 xl:gap-y-2 overflow-x-auto md:overflow-auto xl:overflow-visible">
       <img
         v-for="(mockup, index) in mockups"
         :key="index"
         :src="mockup"
         alt="Thumbnail"
-        class="w-16 h-16 md:w-28 md:h-28 lg:w-20 lg:h-24 object-cover cursor-pointer transition-all hover:opacity-40 duration-300"
+        class="w-16 h-16 md:w-28 md:h-28 xl:w-20 xl:h-24 object-cover cursor-pointer transition-all hover:opacity-40 duration-300"
         @mouseover="handleHover(index)"
         @mouseleave="handleHover(null)"
         @click="handleClick(index)"
@@ -17,16 +17,16 @@
     </div>
 
     <!-- Main Display Image -->
-    <div class="w-full md:w-full lg:w-1/3 items-center justify-center ">
+    <div class="w-full md:w-full xl:w-1/3 items-center justify-center ">
       <img
         :src="hoveredImage"
         alt="Main Display"
-        class="lg:w-full lg:h-full md:w-full md:hfull object-cover shadow-lg transition-all duration-300"
+        class="lg:w-full xl:h-full md:w-full md:hfull object-cover shadow-lg transition-all duration-300"
       />
     </div>
 
     <!-- Section Penjelasan -->
-    <div class="w-auto md:w-auto lg:w-1/2 text-center md:text-left space-y-6">
+    <div class="w-auto md:w-auto xl:w-1/2 text-center md:text-left space-y-6">
       <h2 class="text-2xl md:text-3xl font-normal text-gray-800">
         <span class="text-blue-600">Cloudhomes</span>: Platform Pemesanan Hunian yang Fleksibel
       </h2>
@@ -62,10 +62,10 @@
 
 <!-- KENAPA MEMILIH KAMI --> 
 <section class="mt-5 flex w-full max-w-7xl mx-auto items-center justify-center text-center -pl-2">
-<div class="relative w-full max-w-7xl bg-white p-0 flex flex-col lg:flex-row items-center mt-10">
+<div class="relative w-full max-w-7xl bg-white p-0 flex flex-col xl:flex-row items-center mt-10">
   <!-- Kotak biru panjanggg -->
-  <div class=" bg-[#00B1D6] text-white  w-max-4xl px-2 lg:px-8 py-10 lg:py-12 w-full lg:w-1/2 relative lg:absolute lg:-right-9 flex flex-col items-end lg:justify-end">
-    <h2 class="relative text-2xl md:text-6xl lg:text-3xl text-center lg:text-right font-normal z-20">Kenapa memilih kami?</h2>
+  <div class=" bg-[#00B1D6] text-white  w-max-4xl px-2 lg:px-8 py-10 xl:py-12 w-full xl:w-1/2 relative xl:absolute xl:-right-9 flex flex-col items-end xl:justify-end">
+    <h2 class="relative text-2xl md:text-6xl xl:text-3xl text-center xl:text-right font-normal z-20">Kenapa memilih kami?</h2>
     <div class="absolute -bottom-50 w-80 h-auto right-0 md:hidden">
       <img src="@/assets/elemen2 copy.png" alt="">
     </div>
@@ -88,14 +88,14 @@
                <span class="text-[#00B1D6]   ">Booking Mudah & Cepat :</span> Pemesanan 100% online via Cloudhomes
              </h3>
            </div>
-             <div class="absolute top-0 -right-11 hidden lg:block z-0">
+             <div class="absolute top-0 -right-11 hidden xl:block z-0">
                <img src="@/assets/Vector 19.png" alt="">
              </div>
            
            <div class="bg-[#00B1D6] rounded-lg p-3 cursor-pointer inline-block ml-10">
              <h3 class="text-sm md:text-xl lg:text-sm font-normal text-white">Lokasi Strategis : Banyak pilihan di pusat kota</h3>
            </div>
-           <div class="absolute top-16 -right-14 hidden lg:block  z-0">
+           <div class="absolute top-16 -right-14 hidden xl:block z-0">
                <img src="@/assets/Vector 21.png" alt="">
              </div>
            <div class="bg-white rounded-lg p-3 border-gray-100 border-2 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:mr-20 inline-block">
@@ -103,13 +103,13 @@
                <span class="text-[#00B1D6]">Fitur Smart Doorlock :</span> Check-in mudah tanpa kunci manual
              </h3>
            </div>
-           <div class="absolute bottom-1/2 hidden lg:block -right-11 z-0">
+           <div class="absolute bottom-1/2 hidden xl:block-right-11 z-0">
              <img src="@/assets/Vector 23.png" alt="">
            </div>
            <div class="bg-[#00B1D6] rounded-lg p-3 justify-center items-center cursor-pointer inline-block md:ml-28">
              <h3 class="text-sm md:text-xl lg:text-sm font-normal text-white">Harga Transparan : Tanpa biaya tersembunyi</h3>
            </div>
-           <div class="absolute bottom-24 -right-10 hidden lg:block z-0">
+           <div class="absolute bottom-24 -right-10 hidden xl:block z-0">
                <img src="@/assets/Vector 22.png" alt="">
              </div>
            <div class="bg-white rounded-lg p-3 border-2 border-gray-100 cursor-pointer transform hover:scale-105 hover:bg-gray-50 transition-all duration-300 md:mr-20 inline-block">
@@ -117,7 +117,7 @@
                <span class="text-[#00B1D6]">Banyak Pilihan Hunian :</span> Dari kost hingga apartment mewah 
              </h3>
            </div>
-           <div class="absolute bottom-7 -right-10 hidden lg:block z-0">
+           <div class="absolute bottom-7 -right-10 hidden xl:block z-0">
                <img src="@/assets/Vector 20.png" alt="">
              </div>
     </div>
