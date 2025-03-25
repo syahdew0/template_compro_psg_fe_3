@@ -147,9 +147,12 @@
         <button class="relative z-20 bg-[#00B1D6] border-2 border-[#00B1D6] text-white text-sm md:text-base px-4 py-2 md:px-6 md:py-3 rounded-full font-medium shadow-md hover:bg-white hover:text-[#00B1D6]">
           Cari Hunian Sekarang
         </button>
-        <button class="relative z-20 bg-[#00B1D6] border-2 border-[#00B1D6] text-white text-sm md:text-base px-4 py-2 md:px-6 md:py-3 rounded-full font-medium shadow-md hover:bg-white hover:text-[#00B1D6]">
-          Hubungi Kami
-        </button>
+        <a href="https://wa.me/628111623222?text=Halo,%20Saya%20ingin%20menggunakan%20SENYAMAN LIVING!" 
+        target="_blank" rel="noopener noreferrer"
+        class="relative z-20 bg-[#00B1D6] border-2 border-[#00B1D6] text-white text-sm md:text-base px-4 py-2 md:px-6 md:py-3 rounded-full font-medium shadow-md hover:bg-white hover:text-[#00B1D6]">
+        Hubungi Kami
+        <span class="inline-block ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+      </a>
       </div>
     </div>
   </div>
