@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 w-full p-4 z-50 backdrop-blur-md">
+  <nav class="absolute top-0 left-0 right-0 w-full p-4 z-50 ">
     <div class="flex items-center justify-between px-4 md:px-10 py-3 md:py-5 lg:py-1 lg:px-16">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
@@ -12,10 +12,10 @@
 
       <!-- Navigasi Desktop -->
       <div class="hidden lg:flex space-x-6">
-        <a href="#HorizontalSlides" class="text-gray-300 hover:text-[#00B1D6] text-lg">Beranda</a>
-        <a href="#keunggulan" class="text-gray-300 hover:text-[#00B1D6] text-lg">Keunggulan</a>
-        <a href="#carakerja" class="text-gray-300 hover:text-[#00B1D6] text-lg">Cara Kerja</a>
-        <a href="#promo" class="text-gray-300 hover:text-[#00B1D6] text-lg">Promo</a>
+        <a href="#HorizontalSlides" class="text-white hover:text-[#00B1D6] text-lg">Beranda</a>
+        <a href="#keunggulan" class="text-white hover:text-[#00B1D6] text-lg">Keunggulan</a>
+        <a href="#carakerja" class="text-white hover:text-[#00B1D6] text-lg">Cara Kerja</a>
+        <a href="#promo" class="text-white hover:text-[#00B1D6] text-lg">Promo</a>
       </div>
 
       <!-- Tombol Menu Mobile (di kanan atas) -->

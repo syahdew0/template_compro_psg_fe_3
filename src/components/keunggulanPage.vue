@@ -1,9 +1,9 @@
 <template>
 <section id="keunggulan" class="w-screen h-auto flex flex-col items-centerjustify-center text-center px-1 md:px-8 xl:px-5 pt-20 md:pt-22">
-  <div class="relative z-10 flex flex-col md:flex-col xl:flex-row space-y-6 md:space-y-10 xl:space-y-0 xl:space-x-10 p-6 bg-white backdrop-blur-lg w-full">
+  <div class="relative z-10 flex flex-col md:flex-col xl:flex-row space-y-2 md:space-y-2 xl:space-y-0 xl:space-x-2 bg-white backdrop-blur-lg w-full">
     
     <!-- Thumbnail Image List -->
-    <div class="flex flex-row md:flex-row xl:grid xl:grid-cols-1 items-start gap-x-2 xl:gap-y-2 overflow-x-auto md:overflow-auto xl:overflow-visible">
+    <div class="flex flex-row md:flex-row xl:grid xl:grid-cols-1  gap-x-2 xl:gap-y-3 xl:gap-x-0 lg:gap-x-10 md:gap-x-6 md:gap-y-10 gap-y-5 lg:items-center lg:justify-center md:items-center md:justify-center items-center justify-center  overflow-x-auto md:overflow-auto xl:overflow-visible">
       <img
         v-for="(mockup, index) in mockups"
         :key="index"
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Main Display Image -->
-    <div class="w-full md:w-full xl:w-1/3 items-center justify-center ">
+    <div class="w-full md:w-full xl:w-1/3 flex items-center justify-center ">
       <img
         :src="hoveredImage"
         alt="Main Display"
@@ -35,7 +35,7 @@
       </p>
 
       <!-- List Fitur -->
-      <div class="space-y-4">
+      <div class="space-y-4 ">
         <h2 class="text-xl md:text-2xl font-normal text-gray-700">Fitur Utama Cloudhomes</h2>
         <div
           v-for="(feature, index) in features"
@@ -72,7 +72,7 @@
     <!-- Wrapp -->
     <div class="absolute -bottom-3 md:-bottom-5 -left-2 flex flex-wrap gap-2 md:gap-3 z-10">
       <div class="grid grid-cols-2 grid-rows-2 gap-2 md:gap-3">
-        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
+        <div class="w-16 h-16 md:w-20 md:h-20  bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
         <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-300"></div>
