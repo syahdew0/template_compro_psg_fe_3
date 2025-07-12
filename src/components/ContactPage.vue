@@ -66,7 +66,6 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 import { API_ENDPOINTS } from '@/config/api'
 
 const contactBlocks = ref({
@@ -82,20 +81,27 @@ function getImage(src) {
   return src.startsWith('http') ? src : `${API_ENDPOINTS.baseURL}${src}`
 }
 
-onMounted(async () => {
-  const keys = ['main', 'labels', 'hours', 'support', 'address']
-  for (const key of keys) {
-    const tag = `Home-contact_info_${key}`
-    try {
-      const res = await axios.get(`${API_ENDPOINTS.customPages}?tag=${tag}`)
-      const item = res.data?.[0]
-      if (item) {
-        const parsed = typeof item.items === 'string' ? JSON.parse(item.items) : item.items
-        contactBlocks.value[key] = parsed
-      }
-    } catch (err) {
-      console.error(`Gagal load contact block ${key}:`, err)
+function parse(data) {
+  if (!data) return {}
+  return typeof data === 'string' ? JSON.parse(data) : data
+}
+
+onMounted(() => {
+  const raw = localStorage.getItem('customPageData:Home')
+  if (!raw) return console.warn(' Data halaman Home tidak ditemukan di localStorage')
+
+  try {
+    const data = JSON.parse(raw)
+
+    contactBlocks.value = {
+      main: parse(data.contact_info_main),
+      labels: parse(data.contact_info_badge),
+      hours: parse(data.contact_info_hours),
+      support: parse(data.contact_info_support),
+      address: parse(data.contact_info_address)
     }
+  } catch (err) {
+    console.error(' Gagal parsing contact blocks:', err)
   }
 })
 </script>

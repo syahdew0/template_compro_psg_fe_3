@@ -34,10 +34,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
-import { API_ENDPOINTS } from '@/config/api'
 
-// Refs
 const badge = ref('')
 const title = ref('')
 const content = ref('')
@@ -45,37 +42,29 @@ const image = ref('')
 const visionTitle = ref('')
 const visionContent = ref('')
 
-onMounted(async () => {
+onMounted(() => {
+  const raw = localStorage.getItem('customPageData:Home')
+  if (!raw) return console.warn(' Data Home belum ada di localStorage')
+
   try {
-    // Ambil Badge (Home-badge_about)
-    const badgeRes = await axios.get(`${API_ENDPOINTS.customPages}?tag=Home-badge_about`)
-    const badgeItem = badgeRes.data?.[0]
-    if (badgeItem) {
-      const badgeItems = typeof badgeItem.items === 'string' ? JSON.parse(badgeItem.items) : badgeItem.items
-      badge.value = badgeItems.title || ''
-    }
+    const data = JSON.parse(raw)
 
-    // Ambil About PSG (Home-about_PSG)
-    const aboutRes = await axios.get(`${API_ENDPOINTS.customPages}?tag=Home-about_PSG`)
-    const aboutItem = aboutRes.data?.[0]
-    if (aboutItem) {
-      const aboutItems = typeof aboutItem.items === 'string' ? JSON.parse(aboutItem.items) : aboutItem.items
-      title.value = aboutItem.title || ''
-      content.value = aboutItems.content || ''
-      image.value = aboutItems.image || ''
-    }
+    const badgeRaw = data.badge_about
+    const aboutRaw = data.About_PSG
+    const visiRaw = data.about_visi
 
-    // Ambil Visi Kami (Home-about_visi)
-    const visiRes = await axios.get(`${API_ENDPOINTS.customPages}?tag=Home-about_visi`)
-    const visiItem = visiRes.data?.[0]
-    if (visiItem) {
-      const visiItems = typeof visiItem.items === 'string' ? JSON.parse(visiItem.items) : visiItem.items
-      visionTitle.value = visiItems.title || ''
-      visionContent.value = visiItems.content || ''
-    }
+    const badgeItems = typeof badgeRaw === 'string' ? JSON.parse(badgeRaw) : badgeRaw
+    const aboutItems = typeof aboutRaw === 'string' ? JSON.parse(aboutRaw) : aboutRaw
+    const visiItems = typeof visiRaw === 'string' ? JSON.parse(visiRaw) : visiRaw
 
+    badge.value = badgeItems?.title || ''
+    title.value = aboutItems?.title || ''
+    content.value = aboutItems?.content || ''
+    image.value = aboutItems?.image || ''
+    visionTitle.value = visiItems?.title || ''
+    visionContent.value = visiItems?.content || ''
   } catch (err) {
-    console.error('Gagal memuat data:', err)
+    console.error(' Error parsing localStorage data:', err)
   }
 })
 </script>

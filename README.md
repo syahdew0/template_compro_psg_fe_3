@@ -1,4 +1,4 @@
-# senyaman-living
+# psg-group
 
 ## Project setup
 ```

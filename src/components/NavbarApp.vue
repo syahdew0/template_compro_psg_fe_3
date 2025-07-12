@@ -3,18 +3,17 @@
     <div class="flex items-center justify-between px-4 md:px-10 py-3 md:py-10 lg:py-1 lg:px-16">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
-        <img src="@/assets/Logo-psg.png" alt="Logo" class="w-full h-full">
-        <!-- <div class="text-gray-500">
-          <a href="#" class="font-bold text-xl block">Senyaman Living</a>
-          <p class="text-sm opacity-70 text-[#00B1D6]">by PSG Group</p>
-        </div> -->
+        <img src="@/assets/Logo_PSG.png" alt="Logo" class="w-14 h-12">
+        <div class="text-black">
+          <a href="#" class="font-semibold text-lg block">Pasifik Sukses Gemilang</a>
+        </div>
       </div>
 
       <!-- Navigasi Desktop -->
       <div class="hidden lg:flex space-x-6">
         <a href="#PageManagement" class="text-[#1E1E1E] hover:text-[#00B1D6] text-lg">Beranda</a>
         <a href="#AnakPerusahaan" class="text-[#1E1E1E] hover:text-[#00B1D6] text-lg">Jelajahi Group</a>
-        <a href="#contact-page " class="text-[#1E1E1E] hover:text-[#00B1D6] text-lg">Hubungi Kami</a>
+        <a href="#contactpage " class="text-[#1E1E1E] hover:text-[#00B1D6] text-lg">Hubungi Kami</a>
       </div>
 
       <!-- Tombol Menu Mobile (di kanan atas) -->
@@ -33,10 +32,9 @@
 
       <!-- Menu Links -->
       <div class="flex flex-col items-end mt-16 space-y-6 pr-6">
-        <a href="#HorizontalSlides" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Beranda</a>
         <a href="#Beranda" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Beranda</a>
-        <a href="#carakerja" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Cara Kerja</a>
-        <a href="#promo" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Hubungi Kami</a>
+        <a href="#AnakPerusahaan" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Jelajahi Group</a>
+        <a href="#contactpage" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Hubungi Kami</a>
       </div>
     </div>
   </nav>
