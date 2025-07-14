@@ -30,7 +30,7 @@
         v-for="(img, index) in hero.images"
         :key="index"
         :src="img"
-        class="w-full md:1/2 h-full z-10"
+        class="w-full md:1/2 2xl:w-1/2 h-full z-10"
         :alt="'Company preview ' + (index + 1)"
       />
     </div>
@@ -45,8 +45,6 @@
     class="absolute inset-0 bg-cover bg-center"
     :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }"
   >
-    <!-- Debug -->
-    {{ hero.stats_bg }}
   </div>
 
   </div>

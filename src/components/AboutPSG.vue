@@ -19,15 +19,17 @@
         </div>
       </div>
 
-      <!-- Image -->
-      <div class="relative w-full h-[320px]">
-        <img
-          v-if="image"
-          :src="image"
-          alt="About Image"
-          class="absolute top-0 left-0 w-4/5 rounded-[10px] z-10"
-        />
-      </div>
+<!-- Image -->
+<div class="relative w-full min-h-[320px] h-full flex items-center justify-center">
+  <div class="absolute w-[90%] h-[90%] bg-[#60C7ED] rounded-[10px] z-0"></div>
+  <img
+    v-if="image"
+    :src="image"
+    alt="About Image"
+    class="relative z-10 w-[90%] h-auto max-h-full object-contain rounded-[10px]"
+  />
+</div>
+
     </div>
   </section>
 </template>

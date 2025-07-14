@@ -2,14 +2,14 @@
   <section class="py-16 px-4 sm:px-6 lg:px-20 bg-white relative">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <!-- Image with background -->
-      <div class="relative w-full h-[320px]">
-        <div class="absolute bottom-5 left-5 w-4/5 h-4/5 bg-[#60C7ED] rounded-[10px] z-0"></div>
-        <img
-          :src="getImage(contactBlocks.main.image)"
-          alt="Contact Office"
-          class="absolute top-0 left-0 w-4/5 rounded-[10px] border-4 border-white shadow-xl z-10"
-        />
-      </div>
+      <div class="relative w-full h-full min-h-[320px] flex items-center justify-center">
+  <div class="absolute w-4/5 h-4/5 bg-[#60C7ED] rounded-[10px] z-0"></div>
+  <img
+    :src="getImage(contactBlocks.main.image)"
+    alt="Contact Office"
+    class="relative z-10 w-4/5 h-auto max-h-[90%] object-contain rounded-[10px]"
+  />
+</div>
 
       <!-- Contact Info -->
       <div>
