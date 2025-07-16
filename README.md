@@ -1,4 +1,4 @@
-# psg-group
+# pasifik
 
 ## Project setup
 ```

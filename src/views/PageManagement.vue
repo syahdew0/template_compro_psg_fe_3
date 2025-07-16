@@ -2,39 +2,39 @@
   <div class="w-full overflow-hidden">
     <template v-if="isReady">
       <section class="mb-16">
-        <KeunggulanPage />
+        <KeunggulanPage :pageData="PageManagementData" />
       </section>
 
       <section id="AboutPSG" class="mb-16">
-        <AboutPSG />
+        <AboutPSG :pageData="PageManagementData" />
       </section>
 
       <section id="OurClients" class="mb-16">
-        <OurClients />
+        <OurClients :pageData="PageManagementData" />
       </section>
 
       <section id="PilarPSG" class="mb-16">
-        <PilarPSG />
+        <PilarPSG :pageData="PageManagementData" />
       </section>
 
       <section id="AnakPerusahaan" class="mb-16">
-        <AnakPerusahaan />
+        <AnakPerusahaan :pageData="PageManagementData" />
       </section>
 
       <section id="GalerryPage" class="mb-16">
-        <GalerryPage />
+        <GalerryPage :pageData="PageManagementData" />
       </section>
-      
+
       <section id="contactpage" class="mb-16">
-        <contact-page />
+        <contact-page :pageData="PageManagementData" />
       </section>
 
       <section id="contactpage2" class="mb-16">
-        <contact-page2 />
+        <contact-page2 :pageData="PageManagementData" />
       </section>
 
       <section id="CtaPage" class="mb-16">
-        <CtaPage />
+        <CtaPage :pageData="PageManagementData" />
       </section>
     </template>
 
@@ -45,51 +45,11 @@
 </template>
 
 <script setup>
-import { onMounted, ref} from 'vue'
-import axios from 'axios'
-import { API_ENDPOINTS } from '@/config/api'
-
-import KeunggulanPage from '@/components/SliderHome.vue';
-import AboutPSG from '@/components/AboutPSG.vue';
-import OurClients from '@/components/OurClients.vue';
-import PilarPSG from '@/components/PilarPSG.vue';
-import AnakPerusahaan from '@/components/AnakPerusahaan.vue';
-import contactPage from '@/components/ContactInfo.vue';
-import contactPage2 from '@/components/ContactForm.vue';
-import CtaPage from '@/components/CtaPage.vue';
-import GalerryPage from '@/components/GalerryPage.vue';
-
-const PageManagementData = ref({})
-const isReady = ref(false)
-
-
-onMounted(async () => {
-  try {
-    const localData = localStorage.getItem('customPageData:Home')
-    if (localData) {
-      PageManagementData.value = JSON.parse(localData)
-    }
-
-    const res = await axios.get(`${API_ENDPOINTS.customPages}?page=Home`)
-    const dataByTag = res.data?.data || {}
-
-    PageManagementData.value = dataByTag
-    localStorage.setItem('customPageData:Home', JSON.stringify(dataByTag))
-
-    isReady.value = true
-  } catch (err) {
-    console.error('Gagal load custom page:', err.response?.data || err.message)
-    isReady.value = true
-  }
-})
-
-</script>
-
-<!-- <script setup>
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 import { API_ENDPOINTS } from '@/config/api'
 
+// Import komponen halaman
 import KeunggulanPage from '@/components/SliderHome.vue'
 import AboutPSG from '@/components/AboutPSG.vue'
 import OurClients from '@/components/OurClients.vue'
@@ -100,9 +60,11 @@ import contactPage2 from '@/components/ContactForm.vue'
 import CtaPage from '@/components/CtaPage.vue'
 import GalerryPage from '@/components/GalerryPage.vue'
 
+// State utama
 const PageManagementData = ref({})
 const isReady = ref(false)
 
+// Lifecycle: Load data custom page
 onMounted(async () => {
   try {
     const localData = localStorage.getItem('customPageData:Home')
@@ -110,17 +72,17 @@ onMounted(async () => {
       PageManagementData.value = JSON.parse(localData)
     }
 
-    isReady.value = true
-
-    const res = await axios.get(`${API_ENDPOINTS.customPages}?page=Home`)
+    const res = await axios.get(`${API_ENDPOINTS.customPages}?isFrontend=true&page=Home`)
     const dataByTag = res.data?.data || {}
 
     PageManagementData.value = dataByTag
     localStorage.setItem('customPageData:Home', JSON.stringify(dataByTag))
   } catch (err) {
     console.error('Gagal load custom page:', err.response?.data || err.message)
-    // tetap render meskipun error
+  } finally {
     isReady.value = true
   }
+  console.log('✅ DATA PageManagementData:', PageManagementData.value)
+
 })
-</script> -->
+</script>

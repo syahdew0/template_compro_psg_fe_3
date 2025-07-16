@@ -2,9 +2,9 @@
   <section class="relative bg-white">
     <div class="text-center py-16 mt-20 px-4 sm:px-6 lg:px-8 max-w-full mx-auto">
       <h2 class="text-3xl md:text-3xl max-w-3xl mx-auto font-reguler text-gray-800 text-center leading-tight">
-        {{ title }}<br />
+        {{ hero.title }}
       </h2>
-      <p class="mt-4 text-sm text-gray-600" v-html="content"></p>
+      <p class="mt-4 text-sm text-gray-600" v-html="hero.content"></p>
 
       <div class="mt-6 flex justify-center gap-4 z-50">
         <a
@@ -25,49 +25,33 @@
       </div>
     </div>
 
-    <div v-if="hero.images?.length" class="flex justify-center items-center px-4 md:px-8 z-10">
+    <div v-if="hero.images?.length" class="flex justify-center items-center px-4 md:px-8">
       <img
         v-for="(img, index) in hero.images"
         :key="index"
-        :src="img"
+        :src="getImage(img)"
         class="w-full md:1/2 2xl:w-1/2 h-full z-10"
         :alt="'Company preview ' + (index + 1)"
       />
     </div>
 
-    <div v-if="hero.stats?.length" class="relative z-50 ">
-    <!-- Background image -->
-    <div
-    class="absolute inset-0 bg-cover bg-center"
-    :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }"
-  >
-  <div
-    class="absolute inset-0 bg-cover bg-center"
-    :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }"
-  >
-  </div>
-
-  </div>
-
-  <!-- Overlay -->
-  <div class="absolute inset-0 bg-[#114791] opacity-80"></div>
-
-  <!-- Stats content -->
-  <div class="relative grid grid-cols-2 md:grid-cols-4 text-center text-white z-10">
-    <div
-      v-for="(stat, index) in hero.stats"
-      :key="index"
-      class="py-6 border-t border-white/20"
-    >
-      <div class="text-xl font-reguler">
-        {{ stat.title || '-' }}
+    <div v-if="hero.stats?.length" class="relative z-0">
+      <!-- Background image -->
+      <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }">
+        <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }"></div>
       </div>
-      <div class="mt-1 text-lg md:text-3xl">
-        {{ stat.content || '-' }}
+
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-[#114791] opacity-80"></div>
+
+      <!-- Stats content -->
+      <div class="relative grid grid-cols-2 md:grid-cols-4 text-center text-white z-10">
+        <div v-for="(stat, index) in hero.stats" :key="index" class="py-6 border-t border-white/20">
+          <div class="text-xl font-reguler">{{ stat.title || '-' }}</div>
+          <div class="mt-1 text-lg md:text-3xl">{{ stat.content || '-' }}</div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     <div
       class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full h-full bg-[#60C7ED] rounded-full blur-3xl opacity-60 z-0"
@@ -76,8 +60,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref,  watchEffect } from 'vue'
 import { API_ENDPOINTS } from '@/config/api'
+/* global defineProps */
+const props = defineProps({
+  pageData: {
+    type: Object,
+    default: () => ({})
+  }
+})
 
 const hero = ref({
   title: '',
@@ -91,10 +82,6 @@ const hero = ref({
   slider_secondary_button: { text: '', link: '' }
 })
 
-const title = computed(() => hero.value.title)
-const content = computed(() => hero.value.content)
-
-// Parsing helper
 function parse(data) {
   if (!data) return {}
   return typeof data === 'string' ? JSON.parse(data) : data
@@ -102,42 +89,27 @@ function parse(data) {
 
 function getImage(src) {
   if (!src) return '/no-image.jpg'
-  const fullURL = src.startsWith('http') ? src : `${API_ENDPOINTS.baseURL}${src}`
-  return encodeURI(fullURL)
+  return src.startsWith('http') ? src : `${API_ENDPOINTS.baseURL}${src}`
 }
 
-// Ambil item berdasarkan tag
 function getItemByTag(tag, allData) {
   const section = allData[tag]
   if (!section) return null
 
   const parseItem = (item) => {
-    if (!item) return {}
-
-    // Jika item mengandung 'items' dalam bentuk string JSON
     const parsed = parse(item)
     if (parsed.items) {
-      const inner = parse(parsed.items)
-      return inner
+      return parse(parsed.items)
     }
-
     return parsed
   }
 
   return Array.isArray(section) ? section.map(parseItem) : [parseItem(section)]
 }
 
-onMounted(() => {
-  const raw = localStorage.getItem('customPageData:Home')
-  if (!raw) {
-    console.warn('Data Home tidak ditemukan di localStorage')
-    return
-  }
-
-  const allData = JSON.parse(raw)
-
+watchEffect(() => {
+  const allData = props.pageData || {}
   const sliderSection = parse(allData.slider_home)
-
   const statsItems = getItemByTag('stats', allData) || []
   const statsBgItem = getItemByTag('stats_bg', allData)?.[0] || {}
   const primaryButtonItem = getItemByTag('slider_primary_button', allData)?.[0] || {}

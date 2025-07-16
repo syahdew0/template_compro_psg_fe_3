@@ -31,7 +31,7 @@
       </button>
 
       <!-- Menu Links -->
-      <div class="flex flex-col items-end mt-16 space-y-6 pr-6">
+      <div class="flex flex-col items-end mt-16 space-y-6 pr-6 z-50">
         <a href="#Beranda" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Beranda</a>
         <a href="#AnakPerusahaan" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Jelajahi Group</a>
         <a href="#contactpage" class="text-white text-lg hover:text-[#00B1D6]" @click="menuOpen = false">Hubungi Kami</a>
