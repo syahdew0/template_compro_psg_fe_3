@@ -1,5 +1,8 @@
 <template>
-  <div class="grid grid-cols-6 grid-rows-3 w-full gap-1">
+  <div
+    class="grid grid-cols-6 grid-rows-auto w-full gap-1"
+    :style="{ gridTemplateRows: `repeat(${Math.ceil(filledGrid.length / 6)}, minmax(0, 1fr))` }"
+  >
     <div
       v-for="(image, index) in filledGrid"
       :key="index"
@@ -15,6 +18,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -72,7 +76,7 @@ onMounted(() => {
     }
 
     const totalSlots = 12
-    filledGrid.value = [...parsedList]
+  filledGrid.value = parsedList.slice(0, 12)
     while (filledGrid.value.length < totalSlots) {
       filledGrid.value.push(null)
     }

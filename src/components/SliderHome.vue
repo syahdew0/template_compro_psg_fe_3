@@ -25,20 +25,27 @@
       </div>
     </div>
 
-    <div v-if="hero.images?.length" class="flex justify-center items-center px-4 md:px-8">
+    <div
+  v-if="hero.images?.length"
+  class="relative flex justify-center items-end overflow-hidden"
+>
       <img
         v-for="(img, index) in hero.images"
         :key="index"
         :src="getImage(img)"
-        class="w-full md:1/2 2xl:w-1/2 h-full z-10"
+        class="w-full md:w-1/2 2xl:w-1/2 h-full z-10 object-cover"
         :alt="'Company preview ' + (index + 1)"
       />
-    </div>
+
+      <!-- Blur biru di bawah gambar -->
+      <div
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full h-4/5 bg-[#60C7ED] rounded-full blur-3xl opacity-60 z-0"
+        ></div>
+      </div>
 
     <div v-if="hero.stats?.length" class="relative z-0">
       <!-- Background image -->
       <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }">
-        <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }"></div>
       </div>
 
       <!-- Overlay -->
@@ -53,9 +60,9 @@
       </div>
     </div>
 
-    <div
-      class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full h-full bg-[#60C7ED] rounded-full blur-3xl opacity-60 z-0"
-    ></div>
+    <!-- <div
+      class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full h-4/5 bg-[#60C7ED] rounded-full blur-3xl opacity-60 z-0"
+    ></div> -->
   </section>
 </template>
 

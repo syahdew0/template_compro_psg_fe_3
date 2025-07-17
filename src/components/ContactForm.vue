@@ -1,5 +1,5 @@
 <template>
-  <section class="py-16 px-4 sm:px-6 lg:px-20 bg-white">
+  <section class="py-8 px-4 sm:px-6 lg:px-20 bg-white">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
       <!-- Form Side -->
       <div>
@@ -67,7 +67,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
 import { API_ENDPOINTS } from '@/config/api'
 
 const badge = ref('')
@@ -127,14 +127,32 @@ onMounted(() => {
   }
 })
 
-const handleSubmit = async () => {
-  try {
-    await axios.post('/contact-submit', form.value)
-    alert('Message sent!')
-    Object.keys(form.value).forEach(key => (form.value[key] = ''))
-  } catch (e) {
-    console.error(e)
-    alert('Failed to send.')
+const handleSubmit = () => {
+  const { name, email, phone, company, message } = form.value
+
+  if (!name || !email || !message) {
+    alert('Please fill in required fields.')
+    return
   }
-}
+
+  const toEmail = 'noreply@psggroup.id'
+  const subject = 'Pasifik Contact '
+  const body = ` Tim PSG Group,
+
+  Saya mengisi formulir kontak melalui website dan ingin menyampaikan informasi berikut:
+
+  Nama: ${name}
+  Email: ${email}
+  Telepon: ${phone}
+  Perusahaan: ${company}
+  Pesan:
+  ${message}`
+
+    const mailtoLink = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+
+    window.location.href = mailtoLink // akan membuka aplikasi email default
+  }
+
+
+
 </script>

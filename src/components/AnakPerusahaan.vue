@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 px-4 lg:px-6">
+  <section class="py-8 px-4 lg:px-6">
     <div class="text-start mb-10">
       <p class="text-blue-700 text-sm font-semibold mb-1">{{ badge }}</p>
       <h2 class="text-2xl md:text-3xl font-bold text-gray-800">{{ title }}</h2>
