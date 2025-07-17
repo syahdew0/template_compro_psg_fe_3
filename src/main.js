@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import axios from 'axios'; // ⬅️ import axios
-import { API_ENDPOINTS } from './config/api'; // ⬅️ pastikan path ini sesuai
+import axios from 'axios'; 
+import { API_ENDPOINTS } from './config/api'; 
 import './assets/tailwind.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -34,7 +34,7 @@ async function setFaviconFromAPI() {
 }
 
 async function bootstrapApp() {
-  await setFaviconFromAPI(); // ⬅️ Tunggu favicon selesai
+  await setFaviconFromAPI(); 
   createApp(App).use(router).mount('#app');
 }
 

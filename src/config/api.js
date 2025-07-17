@@ -12,8 +12,10 @@ export const API_ENDPOINTS = {
   updateTheme: (id) => `${API_URL}/api/admin/themes/${id}`,
   themes: `${API_URL}/api/admin/themes`,
   setActiveTheme: (id) => `${API_URL}/api/admin/themes/${id}/active`,
-   favicon: `${API_URL}/api/icons/favicon`,
+   favicon: `${API_URL}/apis/icons/favicon`,
   siteSettings: (id) => `${API_URL}/api/admin/websites/${id}/settings`,
+  settingLogo: `${API_URL}/apis/setting-logo`,
 }
 
 export default API_ENDPOINTS
+

@@ -3,10 +3,11 @@
     <div class="flex items-center justify-between px-4 md:px-10 py-3 md:py-10 lg:py-1 lg:px-16">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
-        <img src="@/assets/Logo_PSG.png" alt="Logo" class="w-14 h-12">
+       <img :src="logoUrl" alt="Logo" class="w-14 h-12" v-if="logoUrl">
         <div class="text-black">
-          <a href="#" class="font-semibold text-lg block">Pasifik Sukses Gemilang</a>
-        </div>
+      <!-- <a href="#" class="font-semibold text-lg block">{{ siteTitle }}</a> -->
+      <p class="font-semibold text-lg block">{{ siteDescription }}</p> <!-- ← tambahkan ini -->
+    </div>
       </div>
 
       <!-- Navigasi Desktop -->
@@ -41,7 +42,34 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import { API_ENDPOINTS } from '@/config/api'
 
-const menuOpen = ref(false);
+const menuOpen = ref(false)
+const logoUrl = ref('')
+const siteTitle = ref('')
+const siteDescription = ref('')
+const websiteId = 1 
+onMounted(async () => {
+  try {
+    const res = await axios.get(API_ENDPOINTS.settingLogo)
+    if (res.data?.value) {
+      logoUrl.value = res.data.value
+    }
+  } catch (err) {
+    console.error('Gagal mengambil logo:', err)
+  }
+
+  try {
+    const res = await axios.get(API_ENDPOINTS.siteSettings(websiteId))
+    if (res.data.success) {
+      const settings = res.data.settings
+      siteTitle.value = settings?.site_title || 'Pasifik Sukses Gemilang'
+      siteDescription.value = settings?.site_description || ''
+    }
+  } catch (err) {
+    console.error('Gagal mengambil site setting:', err)
+  }
+})
 </script>
