@@ -9,6 +9,10 @@
         <AboutPSG :pageData="PageManagementData" />
       </section>
 
+       <section id="Struktur Organisasi" class="mb-16">
+        <struktur-organisasi :pageData="PageManagementData" />
+      </section>
+
       <section id="OurClients" class="mb-16">
         <OurClients :pageData="PageManagementData" />
       </section>
@@ -29,9 +33,9 @@
         <contact-page :pageData="PageManagementData" />
       </section>
 
-      <section id="contactpage2" class="mb-16">
+      <!-- <section id="contactpage2" class="mb-16">
         <contact-page2 :pageData="PageManagementData" />
-      </section>
+      </section> -->
 
       <section id="CtaPage" class="mb-16">
         <CtaPage :pageData="PageManagementData" />
@@ -45,18 +49,19 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
 import axios from 'axios'
 import { API_ENDPOINTS } from '@/config/api'
 
 // Import komponen halaman
 import KeunggulanPage from '@/components/SliderHome.vue'
 import AboutPSG from '@/components/AboutPSG.vue'
+import strukturOrganisasi from '@/components/StrukturOrganisasi.vue'
 import OurClients from '@/components/OurClients.vue'
 import PilarPSG from '@/components/PilarPSG.vue'
 import AnakPerusahaan from '@/components/AnakPerusahaan.vue'
 import contactPage from '@/components/ContactInfo.vue'
-import contactPage2 from '@/components/ContactForm.vue'
+// import contactPage2 from '@/components/ContactForm.vue'
 import CtaPage from '@/components/CtaPage.vue'
 import GalerryPage from '@/components/GalerryPage.vue'
 
@@ -65,24 +70,69 @@ const PageManagementData = ref({})
 const isReady = ref(false)
 
 // Lifecycle: Load data custom page
-onMounted(async () => {
-  try {
-    const localData = localStorage.getItem('customPageData:Home')
-    if (localData) {
-      PageManagementData.value = JSON.parse(localData)
-    }
+// onMounted(async () => {
+//   try {
+//     const localData = localStorage.getItem('customPageData:Home')
+//     if (localData) {
+//       PageManagementData.value = JSON.parse(localData)
+//     }
 
+//     const res = await axios.get(`${API_ENDPOINTS.customPages}?isFrontend=true&page=Home`)
+//     const dataByTag = res.data?.data || {}
+
+//     PageManagementData.value = dataByTag
+//     localStorage.setItem('customPageData:Home', JSON.stringify(dataByTag))
+//   } catch (err) {
+//     console.error('Gagal load custom page:', err.response?.data || err.message)
+//   } finally {
+//     isReady.value = true
+//   }
+//   console.log(' DATA PageManagementData:', PageManagementData.value)
+
+// })
+
+onMounted(async () => {
+  // Ambil dari localStorage dulu
+  const localData = localStorage.getItem('customPageData:Home')
+  if (localData) {
+    PageManagementData.value = JSON.parse(localData)
+  }
+
+  try {
+    // Coba fetch terbaru dari API
     const res = await axios.get(`${API_ENDPOINTS.customPages}?isFrontend=true&page=Home`)
     const dataByTag = res.data?.data || {}
-
     PageManagementData.value = dataByTag
     localStorage.setItem('customPageData:Home', JSON.stringify(dataByTag))
   } catch (err) {
-    console.error('Gagal load custom page:', err.response?.data || err.message)
+    console.error('Gagal fetch data halaman:', err.response?.data || err.message)
   } finally {
     isReady.value = true
-  }
-  console.log('✅ DATA PageManagementData:', PageManagementData.value)
 
+    // Scroll ke target jika ada
+    nextTick(() => {
+      const target = localStorage.getItem('scrollTarget')
+      if (target) {
+        const el = document.getElementById(target)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+          localStorage.removeItem('scrollTarget')
+        } else {
+          // Retry sekali lagi jika belum muncul
+          setTimeout(() => {
+            const retryEl = document.getElementById(target)
+            if (retryEl) {
+              retryEl.scrollIntoView({ behavior: 'smooth' })
+              localStorage.removeItem('scrollTarget')
+            }
+          }, 300)
+        }
+      }
+    })
+  }
+
+  console.log(' DATA PageManagementData:', PageManagementData.value)
 })
+
+
 </script>

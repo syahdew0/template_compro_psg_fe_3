@@ -15,6 +15,17 @@ export const API_ENDPOINTS = {
    favicon: `${API_URL}/apis/icons/favicon`,
   siteSettings: (id) => `${API_URL}/api/admin/websites/${id}/settings`,
   settingLogo: `${API_URL}/apis/setting-logo`,
+
+  posts: `${API_URL}/apis/admin/posts`,               
+  // postBySlug: (slug) => `${API_URL}/apis/posts/category/${slug}`,
+  postBySlug: (slug) => `${API_URL}/apis/posts/slug/${slug}`,  
+  allPosts: () => `${API_URL}/apis/posts`,
+  categories: `${API_URL}/apis/categories`,          
+
+  pages: `${API_URL}/apis/admin/posts`,              
+pageBySlug: (slug) => `${API_URL}/apis/admin/posts/page/${slug}`,
+
+
 }
 
 export default API_ENDPOINTS
