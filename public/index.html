@@ -4,15 +4,41 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
-   <title>Pasifik Sukses Gemilang</title>
+
+    <link rel="icon" href="/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title></title>
+
+<script>
+  const API_URL = 'http://localhost:3001';
+
+  fetch(`${API_URL}/apis/public/site-info`)
+    .then(res => res.json())
+    .then(data => {
+      if (data?.title) document.title = data.title;
+      if (data?.icon) {
+        const link = document.querySelector("link[rel='icon']") || document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/x-icon';
+        link.href = data.icon.startsWith('http') ? data.icon : `${API_URL}${data.icon}?v=${Date.now()}`;
+        document.head.appendChild(link);
+      }
+    })
+    .catch(err => console.error("Gagal ambil site-info:", err));
+</script>
+
 
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>Maaf, website tidak bisa jalan tanpa JavaScript aktif.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
+
+
+
+

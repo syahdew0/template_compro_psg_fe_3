@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import PageManagement from '@/views/PageManagement.vue'
 // import CareersPage from '@/components/careers/CareersPage.vue'
 // import NewsManager from '@/components/news/NewsManager.vue'
@@ -32,14 +32,10 @@ const routes = [
 ]
 
 const base = process.env.VUE_APP_BASE_PATH || '/'
-const router = createRouter({
-  history: createWebHistory(base),
-  routes,
-// })
 
-// const router = createRouter({
-//   history: createWebHistory(),
-//   routes,
+const router = createRouter({
+  history: createWebHashHistory(base),
+  routes,
   scrollBehavior(to) {
     if (to.hash) {
       return {
