@@ -8,29 +8,21 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 async function initSiteInfo() {
   try {
-    const resSite = await axios.get(API_ENDPOINTS.siteSettingsPublic());
-    const siteData = resSite.data.settings;
+    const resSite = await axios.get(API_ENDPOINTS.siteInfo());
+    const siteData = resSite.data;
 
-    if (siteData.site_title) {
-      document.title = siteData.site_title; // <-- gunakan site_title dari admin
-    } else if (siteData.title) {
-      document.title = siteData.title;
-    }
+    document.title = siteData.title || 'Website';
 
-    // favicon
-    const resFav = await axios.get(API_ENDPOINTS.favicon());
-    const favData = resFav.data;
-
-    if (favData.value) {
+    if (siteData.icon) {
       const existing = document.querySelector("link[rel='icon']");
       if (existing) existing.remove();
 
       const link = document.createElement("link");
       link.rel = "icon";
       link.type = "image/x-icon";
-      link.href = favData.value.startsWith('http')
-        ? `${favData.value}?v=${Date.now()}`
-        : `${favData.apiUrl}${favData.value}?v=${Date.now()}`;
+      link.href = siteData.icon.startsWith('http') 
+        ? siteData.icon 
+        : `${siteData.apiUrl}${siteData.icon}?v=${Date.now()}`;
 
       document.head.appendChild(link);
     }

@@ -21,7 +21,7 @@
 
       <!-- Tombol Menu Mobile -->
       <button class="lg:hidden text-3xl text-gray-200 focus:outline-none ml-auto" @click="menuOpen = true">
-        <i class="fas fa-bars"></i>
+        <i class="fa-solid fa-bars"></i>
       </button>
     </div>
 
@@ -30,7 +30,7 @@
       class="fixed top-0 right-0 h-screen w-64 bg-gray-900 bg-opacity-95 backdrop-blur-lg shadow-lg transform transition-transform duration-300"
       :class="menuOpen ? 'translate-x-0' : 'translate-x-full'">
       <button class="absolute top-4 right-4 text-3xl text-white" @click="menuOpen = false">
-        <i class="fas fa-times"></i>
+        <i class="fa-solid fa-xmark"></i>
       </button>
 
       <div class="flex flex-col items-end mt-16 space-y-6 pr-6 z-50">
@@ -42,7 +42,7 @@
       </div>
     </div>
   </nav>
-</template>
+</template> 
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
@@ -54,7 +54,7 @@ const menuOpen = ref(false)
 const logoUrl = ref('')
 const title = ref('')
 const siteDescription = ref('')
-const websiteId = 1
+// const websiteId = 1
 
 const router = useRouter()
 const route = useRoute()
@@ -89,25 +89,19 @@ const handleMobileClick = (id) => {
 // Ambil data logo & deskripsi
 onMounted(async () => {
   try {
-    const res = await axios.get(API_ENDPOINTS.settingLogo)
-    if (res.data?.value) logoUrl.value = res.data.value
-  } catch (err) {
-    console.error('Gagal mengambil logo:', err)
-  }
+    const res = await axios.get(API_ENDPOINTS.siteInfo());
+    const data = res.data;
 
-  try {
-    const res = await axios.get(API_ENDPOINTS.siteSettings(websiteId))
-    if (res.data.success) {
-      const settings = res.data.settings
-      title.value = settings?.title || 'Pasifik Sukses Gemilang'
-      siteDescription.value = settings?.site_description || ''
-    }
+    logoUrl.value = data.icon ? (data.icon.startsWith('http') ? data.icon : `${data.apiUrl}${data.icon}`) : '';
+    title.value = data.title || 'Pasifik Sukses Gemilang';
+    siteDescription.value = data.description || '';
   } catch (err) {
-    console.error('Gagal mengambil site setting:', err)
+    console.error('Gagal mengambil site info:', err);
   }
 
   if (route.path === '/' && route.query.scrollTo) {
     scrollToElement(route.query.scrollTo)
   }
 })
+
 </script>

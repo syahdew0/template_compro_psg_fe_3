@@ -6,29 +6,38 @@
       </h2>
       <p class="mt-4 text-sm text-gray-600" v-html="hero.content"></p>
 
+      <!-- Tombol -->
       <div class="mt-6 flex justify-center gap-4 z-50">
-        <a
+        <!-- Primary Button -->
+        <component
           v-if="hero.slider_primary_button?.link"
-          :href="hero.slider_primary_button.link"
+          :is="isExternal(hero.slider_primary_button.link) ? 'a' : 'router-link'"
+          :href="isExternal(hero.slider_primary_button.link) ? hero.slider_primary_button.link : null"
+          :to="!isExternal(hero.slider_primary_button.link) ? hero.slider_primary_button.link : null"
           class="px-6 py-3 bg-blue-700 text-white font-semibold rounded border-2 border-blue-700 hover:bg-white hover:text-blue-700 transition"
+          :target="isExternal(hero.slider_primary_button.link) ? '_blank' : null"
+          rel="noopener noreferrer"
         >
           {{ hero.slider_primary_button.text || 'Hubungi Kami' }}
-        </a>
+        </component>
 
-        <a
+        <!-- Secondary Button -->
+        <component
           v-if="hero.slider_secondary_button?.link"
-          :href="hero.slider_secondary_button.link"
+          :is="isExternal(hero.slider_secondary_button.link) ? 'a' : 'router-link'"
+          :href="isExternal(hero.slider_secondary_button.link) ? hero.slider_secondary_button.link : null"
+          :to="!isExternal(hero.slider_secondary_button.link) ? hero.slider_secondary_button.link : null"
           class="px-6 py-3 bg-blue-700 text-white font-semibold rounded border-2 border-blue-700 hover:bg-white hover:text-blue-700 transition"
+          :target="isExternal(hero.slider_secondary_button.link) ? '_blank' : null"
+          rel="noopener noreferrer"
         >
           {{ hero.slider_secondary_button.text || 'Pelajari lebih lanjut' }}
-        </a>
+        </component>
       </div>
     </div>
 
-    <div
-  v-if="hero.images?.length"
-  class="relative flex justify-center items-end overflow-hidden"
->
+    <!-- Images -->
+    <div v-if="hero.images?.length" class="relative flex justify-center items-end overflow-hidden">
       <img
         v-for="(img, index) in hero.images"
         :key="index"
@@ -36,39 +45,36 @@
         class="w-full md:w-1/2 2xl:w-1/2 h-full z-10 object-cover"
         :alt="'Company preview ' + (index + 1)"
       />
-
-      <!-- Blur biru di bawah gambar -->
       <div
-          class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full h-4/5 bg-[#60C7ED] rounded-full blur-3xl opacity-60 z-0"
-        ></div>
-      </div>
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full h-4/5 bg-[#60C7ED] rounded-full blur-3xl opacity-60 z-0"
+      ></div>
+    </div>
 
+    <!-- Stats -->
     <div v-if="hero.stats?.length" class="relative z-0">
-      <!-- Background image -->
-      <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }">
-      </div>
-
-      <!-- Overlay -->
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        :style="{ backgroundImage: `url(${getImage(hero.stats_bg)})` }"
+      ></div>
       <div class="absolute inset-0 bg-[#114791] opacity-80"></div>
-
-      <!-- Stats content -->
       <div class="relative grid grid-cols-2 md:grid-cols-4 text-center text-white z-10">
-        <div v-for="(stat, index) in hero.stats" :key="index" class="py-6 border-t border-white/20">
+        <div
+          v-for="(stat, index) in hero.stats"
+          :key="index"
+          class="py-6 border-t border-white/20"
+        >
           <div class="text-xl font-reguler">{{ stat.title || '-' }}</div>
           <div class="mt-1 text-lg md:text-3xl">{{ stat.content || '-' }}</div>
         </div>
       </div>
     </div>
-
-    <!-- <div
-      class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full h-4/5 bg-[#60C7ED] rounded-full blur-3xl opacity-60 z-0"
-    ></div> -->
   </section>
 </template>
 
 <script setup>
-import { ref,  watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { API_ENDPOINTS } from '@/config/api'
+
 /* global defineProps */
 const props = defineProps({
   pageData: {
@@ -102,7 +108,6 @@ function getImage(src) {
 function getItemByTag(tag, allData) {
   const section = allData[tag]
   if (!section) return null
-
   const parseItem = (item) => {
     const parsed = parse(item)
     if (parsed.items) {
@@ -110,8 +115,11 @@ function getItemByTag(tag, allData) {
     }
     return parsed
   }
-
   return Array.isArray(section) ? section.map(parseItem) : [parseItem(section)]
+}
+
+function isExternal(link) {
+  return /^https?:\/\//.test(link)
 }
 
 watchEffect(() => {
@@ -129,12 +137,10 @@ watchEffect(() => {
     link: sliderSection.link || '',
     images: sliderSection.images || (sliderSection.image ? [sliderSection.image] : []),
     stats_bg: statsBgItem.image || '',
-
     stats: statsItems.map(item => ({
       title: item.title || '',
       content: item.content || ''
     })),
-
     slider_primary_button: {
       text: primaryButtonItem.title || '',
       link: primaryButtonItem.link || ''

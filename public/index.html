@@ -12,9 +12,11 @@
     <title></title>
 
 <script>
-  const API_URL = 'http://localhost:3001';
+  // SET API URL ke global agar bisa dipakai di Vue
+  window.APIS_URL = 'https://api-be-psg.pasifiksgroup.com:8443';
+  // window.APIS_URL = 'https://api.psggroup.id';
 
-  fetch(`${API_URL}/apis/public/site-info`)
+  fetch(`${window.APIS_URL}/apis/public/site-info`)
     .then(res => res.json())
     .then(data => {
       if (data?.title) document.title = data.title;
@@ -22,13 +24,12 @@
         const link = document.querySelector("link[rel='icon']") || document.createElement('link');
         link.rel = 'icon';
         link.type = 'image/x-icon';
-        link.href = data.icon.startsWith('http') ? data.icon : `${API_URL}${data.icon}?v=${Date.now()}`;
+        link.href = data.icon.startsWith('http') ? data.icon : `${window.APIS_URL}${data.icon}?v=${Date.now()}`;
         document.head.appendChild(link);
       }
     })
     .catch(err => console.error("Gagal ambil site-info:", err));
 </script>
-
 
   </head>
   <body>

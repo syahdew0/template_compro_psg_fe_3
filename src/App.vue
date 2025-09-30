@@ -6,7 +6,7 @@
       <router-view :settings="settings" />
     </div>
 
-    <Footer :settings="settings" />
+    <Footer :settings="settings"/>
   </div>
 </template>
 
