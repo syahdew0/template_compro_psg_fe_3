@@ -42,36 +42,39 @@
       </div>
     </div>
   </nav>
-</template> 
+</template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
-import { API_ENDPOINTS } from '@/config/api'
+import { API_ENDPOINTS, API_URL } from '@/config/api'
 
-const menuOpen = ref(false)
-const logoUrl = ref('')
-const title = ref('')
-const siteDescription = ref('')
-// const websiteId = 1
+/*global defineProps*/
+const props = defineProps({
+  settings: Object
+})
 
 const router = useRouter()
 const route = useRoute()
+const menuOpen = ref(false)
 
-// Scroll ke elemen dengan ID
+// Logo dari endpoint settingLogo
+const logoUrl = ref('')
+
+// Ambil title & description dari props, fallback ke kosong
+const title = computed(() => props.settings?.title || '')
+const siteDescription = computed(() => props.settings?.site_description || '')
+
 const scrollToElement = (id) => {
   nextTick(() => {
     const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
   })
 }
 
 const navigateOrScroll = (id) => {
   if (route.path !== '/') {
-    // Simpan ke localStorage agar halaman Home bisa ambil dan scroll setelah render
     localStorage.setItem('scrollTarget', id)
     router.push('/')
   } else {
@@ -79,29 +82,30 @@ const navigateOrScroll = (id) => {
   }
 }
 
-
-// Klik di menu mobile
 const handleMobileClick = (id) => {
   menuOpen.value = false
   navigateOrScroll(id)
 }
 
-// Ambil data logo & deskripsi
-onMounted(async () => {
+// --- Fetch logo dari endpoint settingLogo ---
+const fetchLogo = async () => {
   try {
-    const res = await axios.get(API_ENDPOINTS.siteInfo());
-    const data = res.data;
+    const res = await axios.get(API_ENDPOINTS.settingLogoPublic())
+    console.log('Site info API response:', res.data)
 
-    logoUrl.value = data.icon ? (data.icon.startsWith('http') ? data.icon : `${data.apiUrl}${data.icon}`) : '';
-    title.value = data.title || 'Pasifik Sukses Gemilang';
-    siteDescription.value = data.description || '';
+    const logoFromAPI = res.data?.logo || res.data?.icon || ''
+    if (logoFromAPI) {
+      logoUrl.value = logoFromAPI.startsWith('http')
+        ? logoFromAPI
+        : `${API_URL}${logoFromAPI}`
+    }
   } catch (err) {
-    console.error('Gagal mengambil site info:', err);
+    console.error('Gagal ambil logo:', err)
+    logoUrl.value = props.settings?.logo || ''
   }
+}
 
-  if (route.path === '/' && route.query.scrollTo) {
-    scrollToElement(route.query.scrollTo)
-  }
+onMounted(() => {
+  fetchLogo()
 })
-
 </script>

@@ -6,30 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <link rel="icon" href="/favicon.ico">
+    <title>Loading...</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <title></title>
-
-<script>
-  // SET API URL ke global agar bisa dipakai di Vue
-  window.APIS_URL = 'https://api-be-psg.pasifiksgroup.com:8443';
-  // window.APIS_URL = 'https://api.psggroup.id';
-
-  fetch(`${window.APIS_URL}/apis/public/site-info`)
-    .then(res => res.json())
-    .then(data => {
-      if (data?.title) document.title = data.title;
-      if (data?.icon) {
-        const link = document.querySelector("link[rel='icon']") || document.createElement('link');
-        link.rel = 'icon';
-        link.type = 'image/x-icon';
-        link.href = data.icon.startsWith('http') ? data.icon : `${window.APIS_URL}${data.icon}?v=${Date.now()}`;
-        document.head.appendChild(link);
-      }
-    })
-    .catch(err => console.error("Gagal ambil site-info:", err));
-</script>
+    <!-- Hapus script fetch site info di sini -->
+    <!-- window.APIS_URL tetap bisa diset -->
+    <script>
+      window.APIS_URL = 'https://api-be-psg.pasifiksgroup.com:8443';
+    </script>
 
   </head>
   <body>
@@ -39,7 +24,3 @@
     <div id="app"></div>
   </body>
 </html>
-
-
-
-
