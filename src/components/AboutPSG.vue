@@ -59,7 +59,7 @@ watchEffect(() => {
   const allData = props.pageData || {}
 
   const badgeRaw = allData.badge_about
-  const aboutRaw = allData.About_PSG
+  const aboutRaw = allData.about_PSG1
   const visiRaw = allData.about_visi
 
   const badgeItems = parse(badgeRaw)
