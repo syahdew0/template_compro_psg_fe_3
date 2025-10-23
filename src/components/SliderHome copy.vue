@@ -1,5 +1,5 @@
 <template>
-  <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 overflow-hidden min-h-screen flex items-center">
+  <section class="relative bg-blue-900 overflow-hidden min-h-[40vh] md:min-h-[60vh] lg:min-h-[60vh] flex items-center">
     <!-- Background Image - Right Side (All Devices) -->
     <div 
       v-if="hero.images?.length" 
@@ -21,13 +21,24 @@
     <!-- Curved Separator Between Blue BG and Image -->
     <div class="absolute top-0 right-0 w-full sm:w-3/5 md:w-1/2 h-full pointer-events-none">
       <svg 
-        class="absolute left-0 top-0 h-full w-24 sm:w-32 md:w-40 text-blue-900" 
+        class="absolute left-0 top-0 h-full w-24 sm:w-32 md:w-40 text-blue-700" 
         viewBox="0 0 100 100" 
         preserveAspectRatio="none"
       >
         <path d="M0 0 Q50 50 0 100 L0 0 Z" fill="currentColor"/>
       </svg>
     </div>
+
+    <div class="absolute top-0 right-0 w-full sm:w-3/5 md:w-1/2 h-full pointer-events-none">
+      <svg 
+        class="absolute left-0 top-0 h-full w-24 sm:w-32 md:w-40 text-blue-700 opacity-50" 
+        viewBox="0 0 100 100" 
+        preserveAspectRatio="none"
+      >
+        <path d="M100 0 Q50 50 100 100 L0 100 L0 0 Z" fill="currentColor" />
+      </svg>
+    </div>
+    
 
     <!-- Decorative Pattern Overlay -->
     <div class="absolute inset-0 opacity-10 pointer-events-none">
@@ -41,7 +52,7 @@
         <div class="text-white max-w-2xl mx-auto lg:mx-0 flex flex-col justify-center">
           <!-- Badge -->
           <div class="inline-block mb-6">
-            <span class="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/30 rounded text-sm font-medium">
+            <span class="px-4 py-2 bg-white rounded text-sm font-medium">
               {{ hero.sliderhome_atribut3?.title || 'Best solutions' }}
             </span>
           </div>
@@ -73,7 +84,7 @@
             </component>
 
             <!-- Secondary Button -->
-            <component
+            <!-- <component
               v-if="hero.slider_secondary_button?.link"
               :is="isExternal(hero.slider_secondary_button.link) ? 'a' : 'router-link'"
               :href="isExternal(hero.slider_secondary_button.link) ? hero.slider_secondary_button.link : null"
@@ -83,7 +94,7 @@
               rel="noopener noreferrer"
             >
               {{ hero.slider_secondary_button.text || 'Learn more' }}
-            </component>
+            </component> -->
           </div>
         </div>
 
@@ -97,20 +108,6 @@
       <svg class="w-full h-12 sm:h-16 md:h-20 text-white" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="currentColor"/>
       </svg>
-    </div>
-
-    <!-- Floating Action Buttons (Top Right) - Optional -->
-    <div class="hidden lg:block absolute top-24 right-8 z-30 space-y-4">
-      <button class="w-14 h-14 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-110 group">
-        <svg class="w-6 h-6 text-blue-900 group-hover:text-blue-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-        </svg>
-      </button>
-      <button class="w-14 h-14 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-110 group">
-        <svg class="w-6 h-6 text-blue-900 group-hover:text-blue-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        </svg>
-      </button>
     </div>
   </section>
 </template>

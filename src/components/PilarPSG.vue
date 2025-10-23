@@ -1,28 +1,52 @@
 <template>
-  <section class="py-16 px-4 sm:px-6 lg:px-20 bg-[#e6f6fb]">
-    <div class="text-center mb-12 max-w-2xl mx-auto">
-      <p class="text-sm font-semibold text-blue-700 mb-2">{{ badge }}</p>
-      <h2 class="text-2xl md:text-3xl font-reguler text-gray-800 mb-2">{{ title }}</h2>
-      <p class="text-gray-600">{{ content }}</p>
+  <section class="py-16 px-4 sm:px-6 lg:px-20 bg-white">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <p class="text-sm font-semibold text-blue-600 mb-3 uppercase tracking-wide">{{ badge }}</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{{ title }}</h2>
+      <p class="text-gray-600 text-lg">{{ content }}</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
       <div
         v-for="(item, index) in items"
         :key="index"
-        class="relative bg-white border-t-4 border-blue-800 shadow p-6 rounded-sm"
+        class="text-center group cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2"
       >
-        <!-- Number Circle -->
-        <div class="absolute -top-5 left-1/2 transform -translate-x-1/2">
-          <div class="w-10 h-10 rounded-full bg-blue-800 text-white flex items-center justify-center text-sm font-semibold shadow-md">
-            {{ (index + 1).toString().padStart(2, '0') }}
+        <!-- Icon Container -->
+        <div class="mb-6 flex justify-center">
+          <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center transition-all duration-300 group-hover:bg-blue-100">
+            <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <!-- Icon akan berbeda untuk setiap item, ini contoh default -->
+              <template v-if="index === 0">
+                <!-- Pie chart icon -->
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+              </template>
+              <template v-else-if="index === 1">
+                <!-- Growth chart icon -->
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+              </template>
+              <template v-else>
+                <!-- Globe icon -->
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+              </template>
+            </svg>
           </div>
         </div>
 
         <!-- Content -->
-        <div class="mt-8">
-          <h3 class="text-lg font-reguler text-gray-800">{{ item.title }}</h3>
-          <p class="text-gray-500 text-sm mt-2">{{ item.content }}</p>
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">{{ item.title }}</h3>
+          <p class="text-gray-600 text-base mb-6 leading-relaxed">{{ item.content }}</p>
+          
+          <!-- CTA Link -->
+          <a href="#" class="inline-flex items-center text-gray-900 font-semibold hover:text-blue-600 transition-colors duration-300 group/link">
+            Get started today
+            <svg class="w-5 h-5 ml-2 transform transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+          <div class="h-0.5 w-16 bg-yellow-400 mt-2 mx-auto transition-all duration-300 group-hover:w-24"></div>
         </div>
       </div>
 
@@ -43,7 +67,7 @@ const items = ref([])
 
 onMounted(() => {
   const raw = localStorage.getItem('customPageData:Home')
-  if (!raw) return console.warn(' Data customPage Home tidak ditemukan.')
+  if (!raw) return console.warn('Data customPage Home tidak ditemukan.')
 
   try {
     const data = JSON.parse(raw)
@@ -104,7 +128,7 @@ onMounted(() => {
     }))
 
   } catch (err) {
-    console.error(' Error parsing localStorage customPageData:', err)
+    console.error('Error parsing localStorage customPageData:', err)
   }
 })
 </script>

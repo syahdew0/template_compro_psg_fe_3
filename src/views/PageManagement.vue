@@ -5,6 +5,10 @@
         <KeunggulanPage :pageData="PageManagementData" />
       </section>
 
+      <section id="PilarPSG" class="mb-16">
+        <PilarPSG :pageData="PageManagementData" />
+      </section>
+      
       <section id="AboutPSG" class="mb-16">
         <AboutPSG :pageData="PageManagementData" />
       </section>
@@ -17,9 +21,7 @@
         <OurClients :pageData="PageManagementData" />
       </section>
 
-      <section id="PilarPSG" class="mb-16">
-        <PilarPSG :pageData="PageManagementData" />
-      </section>
+      
 
       <section id="AnakPerusahaan" class="mb-16">
         <AnakPerusahaan :pageData="PageManagementData" />

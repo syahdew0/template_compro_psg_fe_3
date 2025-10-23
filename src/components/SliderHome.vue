@@ -47,7 +47,7 @@
 
     <!-- Content Container -->
     <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 z-10">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid gap-12 items-center">
         <!-- Left Content -->
         <div class="text-white max-w-2xl mx-auto lg:mx-0 flex flex-col justify-center">
           <!-- Badge -->
@@ -84,7 +84,7 @@
             </component>
 
             <!-- Secondary Button -->
-            <component
+            <!-- <component
               v-if="hero.slider_secondary_button?.link"
               :is="isExternal(hero.slider_secondary_button.link) ? 'a' : 'router-link'"
               :href="isExternal(hero.slider_secondary_button.link) ? hero.slider_secondary_button.link : null"
@@ -94,7 +94,7 @@
               rel="noopener noreferrer"
             >
               {{ hero.slider_secondary_button.text || 'Learn more' }}
-            </component>
+            </component> -->
           </div>
         </div>
 

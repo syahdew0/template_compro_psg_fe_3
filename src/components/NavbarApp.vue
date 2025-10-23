@@ -1,73 +1,63 @@
 <template>
   <nav class="absolute top-0 left-0 right-0 w-full z-50 bg-transparent">
-    <div class="flex items-center justify-between px-8 md:px-12 py-5 lg:px-20">
+    <div class="flex items-center justify-between px-6 md:px-10 py-4 lg:px-16">
       <!-- Logo & Title -->
-      <div class="flex items-center space-x-4">
-        <img v-if="logoUrl" :src="logoUrl" alt="Logo" class="h-14 w-auto" />
+      <div class="flex items-center space-x-3">
+        <img v-if="logoUrl" :src="logoUrl" alt="Logo" class="h-12 w-auto" />
         <div class="text-white">
-          <p class="text-2xl font-semibold">{{ title }}</p>
-          <p class="text-sm font-light tracking-wide opacity-90">{{ siteDescription }}</p>
+          <p class="text-xl font-semibold text-wide">{{ title }}</p>
         </div>
       </div>
 
-      <!-- Desktop Menu - Centered -->
-      <div class="hidden lg:flex flex-1 justify-center">
-        <div class="flex space-x-2 items-center">
-          <button
-            v-for="menu in menus"
-            :key="menu.id"
-            @click="navigateOrScroll(menu)"
-            class="relative text-white text-base font-medium tracking-wide px-5 py-2.5 hover:bg-white/10 transition-all duration-300 rounded"
-            :class="isActiveMenu(menu) ? 'bg-white/20' : ''"
-          >
-            {{ menu.title }}
-          </button>
-          <button @click="navigateOrScroll('PageManagement')" class="relative text-white text-base font-medium tracking-wide px-5 py-2.5 hover:bg-white/10 transition-all duration-300 rounded">
-            Beranda
-          </button>
-          <button @click="navigateOrScroll('AnakPerusahaan')" class="relative text-white text-base font-medium tracking-wide px-5 py-2.5 hover:bg-white/10 transition-all duration-300 rounded">
-            Group
-          </button>
-          <router-link to="/careers" class="relative text-white text-base font-medium tracking-wide px-5 py-2.5 hover:bg-white/10 transition-all duration-300 rounded">
-            Careers
-          </router-link>
-          <router-link to="/post" class="relative text-white text-base font-medium tracking-wide px-5 py-2.5 hover:bg-white/10 transition-all duration-300 rounded">
-            News
-          </router-link>
-          <button @click="navigateOrScroll('contactpage')" class="relative text-white text-base font-medium tracking-wide px-5 py-2.5 hover:bg-white/10 transition-all duration-300 rounded">
-            Hubungi Kami
-          </button>
-        </div>
-      </div>
-
-      <!-- Contact Button - Right Side -->
-      <div class="hidden lg:flex">
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex space-x-1 items-center">
         <button
-          class="flex items-center space-x-2 border-2 border-white text-white px-6 py-2.5 rounded-full text-base font-medium hover:bg-white hover:text-[#1e3a8a] transition-all duration-300"
+          v-for="menu in menus"
+          :key="menu.id"
+          @click="navigateOrScroll(menu)"
+          class="relative text-white text-sm font-medium tracking-wide px-4 py-2 hover:bg-white/10 transition-all duration-300 rounded"
+          :class="isActiveMenu(menu) ? 'bg-white/20' : ''"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
-          <span>Contact us today</span>
+          {{ menu.title }}
         </button>
+        
+        <!-- Contact Button -->
+        <component
+  :is="hero.slider_primary_button3.link
+        ? (isExternal(hero.slider_primary_button3.link) ? 'a' : 'router-link')
+        : 'button'"
+  v-if="hero.slider_primary_button3 && (hero.slider_primary_button3.text || hero.slider_primary_button3.link)"
+  :href="hero.slider_primary_button3.link && isExternal(hero.slider_primary_button3.link) ? hero.slider_primary_button3.link : null"
+  :to="hero.slider_primary_button3.link && !isExternal(hero.slider_primary_button3.link) ? hero.slider_primary_button3.link : null"
+  class="ml-4 flex items-center space-x-2 border-2 border-white text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-white hover:text-[#1e3a8a] transition-all duration-300"
+  :target="hero.slider_primary_button3.link && isExternal(hero.slider_primary_button3.link) ? '_blank' : null"
+  rel="noopener noreferrer"
+>
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+  </svg>
+  <span>{{ hero.slider_primary_button3.text || 'Contact Us' }}</span>
+</component>
+
       </div>
 
       <!-- Hamburger Button -->
       <button
-        class="lg:hidden relative w-12 h-12 flex flex-col justify-center items-center focus:outline-none space-y-2"
+        class="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center focus:outline-none space-y-1.5"
         @click="menuOpen = !menuOpen"
       >
         <span
-          class="block h-0.5 w-7 bg-white rounded transition-all duration-300"
-          :class="menuOpen ? 'translate-y-2.5 rotate-45' : ''"
+          class="block h-0.5 w-6 bg-white rounded transition-all duration-300"
+          :class="menuOpen ? 'translate-y-2 rotate-45' : ''"
         ></span>
         <span
-          class="block h-0.5 w-7 bg-white rounded transition-all duration-300"
+          class="block h-0.5 w-6 bg-white rounded transition-all duration-300"
           :class="menuOpen ? 'opacity-0' : ''"
         ></span>
         <span
-          class="block h-0.5 w-7 bg-white rounded transition-all duration-300"
-          :class="menuOpen ? '-translate-y-2.5 -rotate-45' : ''"
+          class="block h-0.5 w-6 bg-white rounded transition-all duration-300"
+          :class="menuOpen ? '-translate-y-2 -rotate-45' : ''"
         ></span>
       </button>
     </div>
@@ -106,22 +96,6 @@
         >
           {{ menu.title }}
         </button>
-        
-        <button @click="handleMobileClick('PageManagement')" class="text-left text-white text-base font-medium py-3 px-4 hover:bg-white/10 rounded transition-all">
-          Beranda
-        </button>
-        <button @click="handleMobileClick('AnakPerusahaan')" class="text-left text-white text-base font-medium py-3 px-4 hover:bg-white/10 rounded transition-all">
-          Group
-        </button>
-        <router-link to="/careers" @click="menuOpen = false" class="text-left text-white text-base font-medium py-3 px-4 hover:bg-white/10 rounded transition-all block">
-          Careers
-        </router-link>
-        <router-link to="/post" @click="menuOpen = false" class="text-left text-white text-base font-medium py-3 px-4 hover:bg-white/10 rounded transition-all block">
-          News
-        </router-link>
-        <button @click="handleMobileClick('contactpage')" class="text-left text-white text-base font-medium py-3 px-4 hover:bg-white/10 rounded transition-all">
-          Hubungi Kami
-        </button>
 
         <!-- Mobile Contact Button -->
         <button
@@ -138,10 +112,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watchEffect} from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
 import { API_ENDPOINTS } from '@/config/api'
+
+/* global defineProps */
+const props = defineProps({
+  pageData: {
+    type: Object,
+    default: () => ({})
+  }
+})
 
 const router = useRouter()
 const route = useRoute()
@@ -150,7 +132,29 @@ const menus = ref([])
 const logoUrl = ref('')
 const title = ref('Pasifik Sukses Gemilang')
 const siteDescription = ref('Mitra Sukses Bersama')
+const hero = ref({
+  slider_primary_button3: { text: '', link: '' }
+})
 
+  function parse(data) {
+  if (!data) return {}
+  return typeof data === 'string' ? JSON.parse(data) : data
+}
+
+function getItemByTag(tag, allData) {
+  if (!allData) return null
+  // cari key yang sama tanpa peduli huruf besar/kecil
+  const foundKey = Object.keys(allData).find(k => k.toLowerCase() === String(tag).toLowerCase())
+  const section = foundKey ? allData[foundKey] : null
+  if (!section) return null
+
+  const parseItem = (item) => {
+    const parsed = parse(item)
+    if (parsed.items) return parse(parsed.items)
+    return parsed
+  }
+  return Array.isArray(section) ? section.map(parseItem) : [parseItem(section)]
+}
 // Check if menu is active
 const isActiveMenu = (menu) => {
   if (!menu?.path) return false
@@ -222,6 +226,39 @@ const fetchMenu = async () => {
   }
 }
 
+function isExternal(link) {
+  return /^https?:\/\//.test(link)
+}
+
+watchEffect(() => {
+  const allData = props.pageData || {}
+
+  // coba ambil langsung by tag (case-insensitive)
+  let primary = getItemByTag('slider_primary_button3', allData)?.[0]
+
+  // fallback: beberapa setup menaruh tombol ini di dalam slider_home
+  if (!primary) {
+    const sliderHome = getItemByTag('slider_home', allData)?.[0]
+    // cari field yang mirip di dalam slider_home
+    if (sliderHome) {
+      primary = sliderHome.slider_primary_button3 || sliderHome.primary_button3 || null
+    }
+  }
+
+  // set hero, map content -> link, dan beri default aman
+  hero.value = {
+    ...hero.value,
+    slider_primary_button3: {
+      text: primary?.title || primary?.text || 'Contact Us',
+      link: primary?.content || primary?.link || ''   // content dipakai sebagai link
+    }
+  }
+
+  // debug optional
+  // console.log('Resolved navbar button:', hero.value.slider_primary_button3)
+})
+
+
 onMounted(() => {
   fetchSettings()
   fetchMenu()
@@ -234,6 +271,7 @@ onMounted(() => {
       localStorage.removeItem('scrollTarget')
     })
   }
+   console.log('slider_primary_button3 from pageData:', getItemByTag('slider_primary_button3', props.pageData))
 })
 </script>
 
