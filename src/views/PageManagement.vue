@@ -5,16 +5,32 @@
         <KeunggulanPage :pageData="PageManagementData" />
       </section>
 
-      <section id="PilarPSG" class="mb-16">
+      <section id="PilarPSG" class="mb-10">
         <PilarPSG :pageData="PageManagementData" />
       </section>
+
+      <section id="strategyConsultant" class="mb-16">
+        <StrategyConsultant :pageData="PageManagementData" />
+      </section>
       
+      <section id="realLife" class="mb-16">
+        <RealLife :pageData="PageManagementData" />
+      </section>
+
       <section id="AboutPSG" class="mb-16">
         <AboutPSG :pageData="PageManagementData" />
       </section>
 
-       <section id="Struktur Organisasi" class="mb-16">
-        <struktur-organisasi :pageData="PageManagementData" />
+      <section id="ourTeam" class="mb-16">
+        <OurTeam :pageData="PageManagementData" />
+      </section>
+
+      <section id="ourConsultant" class="mb-16">
+        <OurConsultant :pageData="PageManagementData" />
+      </section>
+
+      <section id="guaranteedAccount" class="mb-16">
+        <GuaranteedAccount :pageData="PageManagementData" />
       </section>
 
       <section id="OurClients" class="mb-16">
@@ -58,14 +74,18 @@ import { API_ENDPOINTS } from '@/config/api'
 // Import komponen halaman
 import KeunggulanPage from '@/components/SliderHome.vue'
 import AboutPSG from '@/components/AboutPSG.vue'
-import strukturOrganisasi from '@/components/StrukturOrganisasi.vue'
 import OurClients from '@/components/OurClients.vue'
 import PilarPSG from '@/components/PilarPSG.vue'
+import StrategyConsultant from '@/components/StrategyConsultant.vue'
 import AnakPerusahaan from '@/components/AnakPerusahaan.vue'
 import contactPage from '@/components/ContactInfo.vue'
 // import contactPage2 from '@/components/ContactForm.vue'
 import CtaPage from '@/components/CtaPage.vue'
 import GalerryPage from '@/components/GalerryPage.vue'
+import RealLife from '@/components/RealLife.vue'
+import OurTeam from '@/components/OurTeam.vue'
+import OurConsultant from '@/components/OurConsultant.vue'
+import GuaranteedAccount from '@/components/GuaranteedAccount.vue'
 
 // State utama
 const PageManagementData = ref({})

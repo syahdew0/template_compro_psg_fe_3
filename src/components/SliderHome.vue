@@ -1,5 +1,5 @@
 <template>
-  <section class="relative bg-blue-900 overflow-hidden min-h-[40vh] md:min-h-[60vh] lg:min-h-[60vh] flex items-center">
+  <section class="relative bg-[#3B4E9E] overflow-hidden min-h-[40vh] md:min-h-[60vh] lg:min-h-[60vh] flex items-center">
     <!-- Background Image - Right Side (All Devices) -->
     <div 
       v-if="hero.images?.length" 
@@ -52,13 +52,13 @@
         <div class="text-white max-w-2xl mx-auto lg:mx-0 flex flex-col justify-center">
           <!-- Badge -->
           <div class="inline-block mb-6">
-            <span class="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/30 rounded text-sm font-medium">
+            <span class="text-black px-4 py-2 bg-white rounded text-sm font-medium">
               {{ hero.sliderhome_atribut3?.title || 'Best solutions' }}
             </span>
           </div>
 
           <!-- Subtitle -->
-          <p class="text-base mb-4 text-blue-200 leading-relaxed text-left" v-if="hero.sliderhome_atribut3?.content" v-html="hero.sliderhome_atribut3.content"></p>
+          <p class="text-base mb-4 text-white leading-relaxed text-left" v-if="hero.sliderhome_atribut3?.content" v-html="hero.sliderhome_atribut3.content"></p>
 
           <!-- Main Title -->
           <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-left">
@@ -82,19 +82,6 @@
             >
               {{ hero.slider_primary_button3.text || 'Contact Us' }}
             </component>
-
-            <!-- Secondary Button -->
-            <!-- <component
-              v-if="hero.slider_secondary_button?.link"
-              :is="isExternal(hero.slider_secondary_button.link) ? 'a' : 'router-link'"
-              :href="isExternal(hero.slider_secondary_button.link) ? hero.slider_secondary_button.link : null"
-              :to="!isExternal(hero.slider_secondary_button.link) ? hero.slider_secondary_button.link : null"
-              class="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold rounded-full border-2 border-white/30 transition-all duration-300 inline-flex items-center gap-2 text-sm sm:text-base"
-              :target="isExternal(hero.slider_secondary_button.link) ? '_blank' : null"
-              rel="noopener noreferrer"
-            >
-              {{ hero.slider_secondary_button.text || 'Learn more' }}
-            </component> -->
           </div>
         </div>
 

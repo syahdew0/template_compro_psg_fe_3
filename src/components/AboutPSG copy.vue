@@ -17,7 +17,7 @@
             v-if="badge"
             class="inline-block bg-white text-gray-900 px-4 py-2 rounded text-sm font-semibold mb-6"
           >
-            Best Solution
+            {{ badge }}
           </span>
           
           <h2 class="text-sm font-medium text-white mb-4 tracking-wide">{{ subtitle }}</h2>
@@ -36,7 +36,7 @@
     <!-- Right Side - Vision with Progress Bars -->
     <div class="bg-[#1e3a8a] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
       <div>
-        <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-12">The right solution for your business</h2>
+        <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-12">{{ visionTitle }}</h2>
 
         <!-- Progress Bars -->
         <div class="space-y-8">
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <!-- <p v-if="visionContent" class="text-gray-200 leading-relaxed mt-8" v-html="visionContent"></p> -->
+        <p v-if="visionContent" class="text-gray-200 leading-relaxed mt-8" v-html="visionContent"></p>
       </div>
     </div>
   </section>

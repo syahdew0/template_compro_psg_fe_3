@@ -1,7 +1,7 @@
 <template>
   <section class="py-16 px-4 sm:px-6 lg:px-20 bg-white">
     <div class="text-center mb-16 max-w-3xl mx-auto">
-      <p class="text-base font-semibold text-[#3B4E9E] mb-3 tracking-wide">{{ content }}</p>
+      <p class="text-sm font-semibold text-blue-600 mb-3 uppercase tracking-wide">{{ content }}</p>
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{{ title }}</h2>
     </div>
 
@@ -14,7 +14,7 @@
         <!-- Icon Container -->
         <div class="mb-6 flex justify-center">
           <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center transition-all duration-300 group-hover:bg-blue-100">
-            <svg class="w-10 h-10 text-[#3B4E9E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <!-- Icon akan berbeda untuk setiap item, ini contoh default -->
               <template v-if="index === 0">
                 <!-- Pie chart icon -->
@@ -59,6 +59,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
+const badge = ref('')
 const title = ref('')
 const content = ref('')
 const items = ref([])
@@ -70,12 +71,21 @@ onMounted(() => {
   try {
     const data = JSON.parse(raw)
 
+    // --- Ambil badge
+    try {
+      const parsedBadge = typeof data.pilar_badge === 'string'
+        ? JSON.parse(data.pilar_badge)
+        : data.pilar_badge
+      badge.value = parsedBadge?.title || ''
+    } catch (e) {
+      console.warn('Gagal parse pilar_badge:', e.message)
+    }
 
     // --- Ambil pilar utama
     try {
-      const parsedPilar = typeof data.pilar3 === 'string'
-        ? JSON.parse(data.pilar3)
-        : data.pilar3
+      const parsedPilar = typeof data.pilar === 'string'
+        ? JSON.parse(data.pilar)
+        : data.pilar
       title.value = parsedPilar?.title || ''
       content.value = parsedPilar?.content || ''
     } catch (e) {
@@ -84,7 +94,7 @@ onMounted(() => {
 
     // --- Ambil dan parsing pilar_items
     const parsedItems = []
-    const pilarRaw = data.pilar_items3
+    const pilarRaw = data.pilar_items
 
     if (Array.isArray(pilarRaw)) {
       for (const entry of pilarRaw) {
