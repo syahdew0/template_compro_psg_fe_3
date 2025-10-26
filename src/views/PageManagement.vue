@@ -12,7 +12,7 @@
       <section id="strategyConsultant" class="mb-16">
         <StrategyConsultant :pageData="PageManagementData" />
       </section>
-      
+
       <section id="realLife" class="mb-16">
         <RealLife :pageData="PageManagementData" />
       </section>
@@ -33,11 +33,15 @@
         <GuaranteedAccount :pageData="PageManagementData" />
       </section>
 
+      <section id="valuableBusiness" class="mb-16">
+        <ValuableBusiness :pageData="PageManagementData" />
+      </section>
+
       <section id="OurClients" class="mb-16">
         <OurClients :pageData="PageManagementData" />
       </section>
 
-      
+
 
       <section id="AnakPerusahaan" class="mb-16">
         <AnakPerusahaan :pageData="PageManagementData" />
@@ -86,6 +90,7 @@ import RealLife from '@/components/RealLife.vue'
 import OurTeam from '@/components/OurTeam.vue'
 import OurConsultant from '@/components/OurConsultant.vue'
 import GuaranteedAccount from '@/components/GuaranteedAccount.vue'
+import ValuableBusiness from '@/components/ValuableBusiness.vue'
 
 // State utama
 const PageManagementData = ref({})
