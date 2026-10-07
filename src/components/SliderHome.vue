@@ -1,9 +1,9 @@
 <template>
-  <section class="relative bg-[#3B4E9E] overflow-hidden min-h-[40vh] md:min-h-[60vh] lg:min-h-[60vh] flex items-center">
+  <section class="relative bg-[#1e3a8a] overflow-hidden min-h-[40vh] md:min-h-[60vh] lg:min-h-[60vh] flex items-center">
     <!-- Background Image - Right Side (All Devices) -->
     <div 
       v-if="hero.images?.length" 
-      class="absolute top-0 right-0 w-full sm:w-3/5 md:w-1/2 h-full"
+      class="absolute top-0 right-0 w-full sm:w-4/5 md:w-3/4 h-full"
     >
       <div class="relative w-full h-full">
         <img
@@ -19,7 +19,7 @@
     </div>
 
     <!-- Curved Separator Between Blue BG and Image -->
-    <div class="absolute top-0 right-0 w-full sm:w-3/5 md:w-1/2 h-full pointer-events-none">
+    <div class="absolute top-0 right-0 w-full sm:w-4/5 md:w-3/4 h-full pointer-events-none">
       <svg 
         class="absolute left-0 top-0 h-full w-24 sm:w-32 md:w-40 text-blue-700" 
         viewBox="0 0 100 100" 
@@ -29,7 +29,7 @@
       </svg>
     </div>
 
-    <div class="absolute top-0 right-0 w-full sm:w-3/5 md:w-1/2 h-full pointer-events-none">
+    <div class="absolute top-0 right-0 w-full sm:w-4/5 md:w-3/4 h-full pointer-events-none">
       <svg 
         class="absolute left-0 top-0 h-full w-24 sm:w-32 md:w-40 text-blue-700 opacity-50" 
         viewBox="0 0 100 100" 
@@ -46,10 +46,10 @@
     </div>
 
     <!-- Content Container -->
-    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 z-10">
-      <div class="grid gap-12 items-center">
-        <!-- Left Content -->
-        <div class="text-white max-w-2xl mx-auto lg:mx-0 flex flex-col justify-center">
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-20 sm:pb-16 lg:py-24 z-10">
+      <div class="flex justify-center items-center">
+        <!-- Content -->
+        <div class="text-white max-w-2xl flex flex-col justify-center">
           <!-- Badge -->
           <div class="inline-block mb-6">
             <span class="text-black px-4 py-2 bg-white rounded text-sm font-medium">
@@ -84,9 +84,6 @@
             </component>
           </div>
         </div>
-
-        <!-- Right Side - Empty (Image is background) -->
-        <div class="hidden lg:block"></div>
       </div>
     </div>
 
@@ -98,6 +95,7 @@
     </div>
   </section>
 </template>
+
 
 <script setup>
 import { ref, watchEffect } from 'vue'

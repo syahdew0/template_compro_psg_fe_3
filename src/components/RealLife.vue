@@ -49,7 +49,7 @@
           <div v-if="hero.images?.length" class="relative w-full max-w-md">
             <img
               :src="getImage(hero.images[0])"
-              class="w-full h-auto object-cover rounded-lg"
+              class="w-full h-auto object-cover"
               :alt="hero.title"
             />
             <!-- Decorative blur effect behind image -->
@@ -177,10 +177,9 @@
 
 <script setup>
 import { ref, onMounted, watchEffect } from 'vue'
-import axios from 'axios'
 import { API_ENDPOINTS } from '@/config/api'
 
-/* global defineProps */
+/* global defineProps*/
 const props = defineProps({
   pageData: { type: Object, default: () => ({}) }
 })
@@ -194,143 +193,156 @@ const hero = ref({
 })
 
 const heroItems = ref([])
-const badgeText = ref()
+const badgeText = ref('')
 
+// Helper function untuk parse data
 function parse(data) {
-  if (!data) return null
-  try {
-    return typeof data === 'string' ? JSON.parse(data) : data
-  } catch {
-    return null
+  if (data == null) return null
+  let out = data
+
+  if (typeof out === 'string') {
+    try {
+      out = JSON.parse(out)
+    } catch (e) {
+      out = data
+    }
   }
+
+  if (Array.isArray(out)) {
+    out = out
+      .map(it => {
+        if (typeof it === 'string') {
+          try {
+            return JSON.parse(it)
+          } catch (e) {
+            return null
+          }
+        }
+        return it
+      })
+      .filter(Boolean)
+  }
+  return out
 }
 
+// Helper function untuk convert ke HTTPS
+function toHttps(url) {
+  if (!url || typeof url !== 'string') return ''
+  return url.startsWith('http://apicompro.phisoft.co.id')
+    ? url.replace('http://', 'https://')
+    : url
+}
+
+// Helper function untuk get image URL
 function getImage(src) {
   if (!src) return '/no-image.jpg'
-  return src.startsWith('http') ? src : `${API_ENDPOINTS.baseURL}${src}`
+  const httpsUrl = toHttps(src)
+  return httpsUrl.startsWith('http') ? httpsUrl : `${API_ENDPOINTS.baseURL}${httpsUrl}`
 }
 
-async function getByTag(tag) {
-  try {
-    let url = null
-    
-    if (typeof API_ENDPOINTS.pageByTag === 'function') {
-      url = API_ENDPOINTS.pageByTag(tag)
-    } else if (typeof API_ENDPOINTS.getByTag === 'function') {
-      url = API_ENDPOINTS.getByTag(tag)
-    } else if (typeof API_ENDPOINTS.contentByTag === 'function') {
-      url = API_ENDPOINTS.contentByTag(tag)
-    } else if (typeof API_ENDPOINTS.pagesByTag === 'string') {
-      url = `${API_ENDPOINTS.pagesByTag}?tag=${encodeURIComponent(tag)}`
-    } else {
-      url = `${API_ENDPOINTS.baseURL}/api/public/content?tag=${encodeURIComponent(tag)}`
-    }
-    
-    const { data } = await axios.get(url)
-    return data?.data ?? data ?? null
-  } catch (error) {
-    console.error(`Error fetching tag "${tag}":`, error)
-    return null
-  }
-}
-
-onMounted(async () => {
-  try {
-    const sliderSection = await getByTag('real_life3')
-    let sliderSection3 = await getByTag('real_life_items3')
-    const badgeSection = await getByTag('sliderhome_atribut3')
-    
-    if (!sliderSection3 || (Array.isArray(sliderSection3) && sliderSection3.length === 0)) {
-      sliderSection3 = await getByTag('Real_life_items3')
-      
-      if (!sliderSection3 || (Array.isArray(sliderSection3) && sliderSection3.length === 0)) {
-        sliderSection3 = await getByTag('real_life_items_3')
-      }
-      
-      if (!sliderSection3 || (Array.isArray(sliderSection3) && sliderSection3.length === 0)) {
-        sliderSection3 = await getByTag('reallifeitems3')
-      }
-    }
-
-    // Set badge text
-    if (badgeSection) {
-      if (Array.isArray(badgeSection) && badgeSection.length > 0) {
-        badgeText.value = badgeSection[0].title || ''
-      } else if (badgeSection.title) {
-        badgeText.value = badgeSection.title
-      }
-    }
-
-    if (sliderSection) {
-      hero.value = {
-        title: sliderSection.title || '',
-        content: sliderSection.content || '',
-        icon: sliderSection.icon || '',
-        link: sliderSection.link || '',
-        images: sliderSection.images || (sliderSection.image ? [sliderSection.image] : [])
-      }
-    }
-
-    if (sliderSection3) {
-      let rawItems = []
-      
-      if (Array.isArray(sliderSection3)) {
-        rawItems = sliderSection3
-      } else if (sliderSection3.items && Array.isArray(sliderSection3.items)) {
-        rawItems = sliderSection3.items
-      } else if (sliderSection3.data && Array.isArray(sliderSection3.data)) {
-        rawItems = sliderSection3.data
-      } else if (typeof sliderSection3 === 'object') {
-        rawItems = [sliderSection3]
-      }
-
-      heroItems.value = rawItems.map((it, i) => ({
-        id: it.id ?? i,
-        title: it.title || '',
-        contentHtml: it.content || '',
-        icon: it.icon || null,
-        link: it.link || null,
-        image: it.image || null
-      }))
-    }
-  } catch (error) {
-    console.error('Error in onMounted:', error)
-  }
-})
-
+// Watch for props changes
 watchEffect(() => {
-  const s = parse(props.pageData?.real_life3)
-  if (s) {
+  const allData = props.pageData || {}
+
+  // Parse badge
+  const badgeRaw = allData.sliderhome_atribut3 ?? allData.Sliderhome_atribut3 ?? null
+  const badgeParsed = parse(badgeRaw)
+  
+  if (Array.isArray(badgeParsed) && badgeParsed.length) {
+    badgeText.value = badgeParsed[0]?.title || ''
+  } else if (badgeParsed?.title) {
+    badgeText.value = badgeParsed.title
+  }
+
+  // Parse hero section
+  const heroRaw = allData.real_life3 ?? allData.Real_life3 ?? null
+  const heroParsed = parse(heroRaw)
+  
+  if (heroParsed) {
     hero.value = {
-      title: s.title || '',
-      content: s.content || '',
-      icon: s.icon || '',
-      link: s.link || '',
-      images: s.images || (s.image ? [s.image] : [])
+      title: heroParsed.title || '',
+      content: heroParsed.content || '',
+      icon: toHttps(heroParsed.icon || ''),
+      link: heroParsed.link || '',
+      images: heroParsed.images || (heroParsed.image ? [toHttps(heroParsed.image)] : [])
     }
   }
+
+  // Parse hero items
+  const itemsRaw = allData.real_life_items3 ?? allData.Real_life_items3 ?? null
+  const itemsParsed = parse(itemsRaw)
   
-  const items = parse(props.pageData?.real_life_items3)
-  if (items) {
-    const rawItems = Array.isArray(items) ? items : [items]
+  if (itemsParsed) {
+    const rawItems = Array.isArray(itemsParsed) ? itemsParsed : [itemsParsed]
     heroItems.value = rawItems.map((it, i) => ({
       id: it.id ?? i,
       title: it.title || '',
       contentHtml: it.content || '',
-      icon: it.icon || null,
+      icon: toHttps(it.icon || ''),
       link: it.link || null,
-      image: it.image || null
-    }))
+      image: toHttps(it.image || '')
+    })).filter(item => item.title) // Filter out empty items
+  }
+})
+
+// Load from localStorage on mount
+onMounted(() => {
+  const raw = localStorage.getItem('customPageData:Home')
+  if (!raw) {
+    console.warn('Data halaman Home tidak ditemukan di localStorage')
+    return
   }
 
-  // Watch badge
-  const badge = parse(props.pageData?.sliderhome_atribut3)
-  if (badge) {
-    if (Array.isArray(badge) && badge.length > 0) {
-      badgeText.value = badge[0].title || ''
-    } else if (badge.title) {
-      badgeText.value = badge.title
+  try {
+    const data = JSON.parse(raw)
+
+    // Parse badge
+    const badgeRaw = data.sliderhome_atribut3 ?? data.Sliderhome_atribut3 ?? null
+    const badgeParsed = parse(badgeRaw)
+    
+    if (Array.isArray(badgeParsed) && badgeParsed.length) {
+      badgeText.value = badgeParsed[0]?.title || ''
+    } else if (badgeParsed?.title) {
+      badgeText.value = badgeParsed.title
     }
+
+    // Parse hero
+    const heroRaw = data.real_life3 ?? data.Real_life3 ?? null
+    const heroParsed = parse(heroRaw)
+    
+    if (heroParsed) {
+      hero.value = {
+        title: heroParsed.title || '',
+        content: heroParsed.content || '',
+        icon: toHttps(heroParsed.icon || ''),
+        link: heroParsed.link || '',
+        images: heroParsed.images || (heroParsed.image ? [toHttps(heroParsed.image)] : [])
+      }
+    }
+
+    // Parse items
+    const itemsRaw = data.real_life_items3 ?? data.Real_life_items3 ?? null
+    const itemsParsed = parse(itemsRaw)
+    
+    if (itemsParsed) {
+      const rawItems = Array.isArray(itemsParsed) ? itemsParsed : [itemsParsed]
+      heroItems.value = rawItems.map((it, i) => ({
+        id: it.id ?? i,
+        title: it.title || '',
+        contentHtml: it.content || '',
+        icon: toHttps(it.icon || ''),
+        link: it.link || null,
+        image: toHttps(it.image || '')
+      })).filter(item => item.title)
+    }
+
+    console.log('RealLife data loaded:', {
+      badge: badgeText.value,
+      hero: hero.value,
+      items: heroItems.value.length
+    })
+  } catch (err) {
+    console.error('Gagal parsing data RealLife:', err)
   }
 })
 </script>
